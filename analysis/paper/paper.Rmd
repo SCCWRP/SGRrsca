@@ -5,21 +5,10 @@ author:
   - Author Two
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
-    bookdown::html_document2:
+    bookdown::word_document2:
       fig_caption: yes
-      reference_docx: "../templates/template.docx" # Insert path for the DOCX file
-bibliography: references.bib
-csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
-abstract: |
-  Text of abstract
-keywords: |
-  keyword 1; keyword 2; keyword 3
-highlights: |
-  These are the highlights. 
+      reference_docx: "../templates/my_styles.docx" # Insert path for the DOCX file
 ---
-
-
-<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
 
 ```{r, setup, echo = FALSE}
 knitr::opts_chunk$set(
@@ -31,7 +20,7 @@ knitr::opts_chunk$set(
   fig.path = "../figures/"
 )
 
-library(SGRrsca) # Or use devtools::load_all('.', quiet = T) if your code is in script files, rather than as functions in the `/R` diretory
+devtools::load_all('.', quiet = T)
 ```
 
 # Introduction

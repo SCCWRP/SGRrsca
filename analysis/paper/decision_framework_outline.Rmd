@@ -1,0 +1,179 @@
+---
+title: "Decision framework for SCAPE validation: outline"
+author:
+  - Marcus Beck
+  - Raphael Mazor
+  - Scott Johnson
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::word_document2:
+      toc: true
+      fig_caption: yes
+      reference_docx: "../templates/my_styles.docx" # Insert path for the DOCX file
+---
+
+```{r, setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  comment = "#>",
+  fig.path = "../figures/"
+)
+
+devtools::load_all('.', quiet = T)
+```
+
+# Background
+
+* What are constraints and how are they determined with SCAPE and the landscape model (LSM)
+
+* How is SCAPE used to prioritize/what are high priority sites in SGR
+
+* We need to validate the information for high priority sites
+     * Does the landscape model correctly reflect the landscape conditions affecting these sites?
+     * Do observed CSCI scores correctly reflect local in-stream conditions?
+     * If the above are true, what factors may explain the discrepancy between observed scores and predicted ranges?
+
+* Who this document is for
+     * Resource managers in SGR
+     * Field crews and technicians 
+
+* What this document provides
+     * Checklist of questions to evaluate for considering validity of CSCI and LSM scores
+     * Organized in hierarchy from low to high effort, i.e., desktop exercise to collection/eval of external data
+     * Decision is a judgment call based on available evidence
+     
+* What this document is not
+     * Not a validation of the CSCI as an index - it is a validation of the sample
+     * Not a validation of LSM as a model - it is a validation of the input data
+     * No policy recommendations for considering a sample/score valid, this is part of normal QA/QC
+     * Does not define what action is pursued once CSCI/LSM are validated
+
+# Validation
+
+* General framework from priority to follow-up action is below, validation is a component of this broader process
+
+```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information."}
+knitr::include_graphics('../figures/simp_temp.png')
+```
+
+* The validation process evaluates metadata and external datasets
+     * Identify sites/samples to validate
+     * Build validation tool set
+     * Verify against validation criteria
+     * Make final decision
+     
+## Data sources
+
+List of resources to assist with building the validation tool set - can go here or in appendix.
+
+* Metadata QA/QC
+  * CSCI metadata (consult CSCI SOP and package documentation)
+  * SCAPE website
+  * Reference site information
+  
+* GIS data
+  * StreamCat
+  * NHD hydrography
+  * Catchment/Watershed layers
+  * LU/LC data - NLCD 2006, 2011, NAIP aerial imagery
+  * GIS metrics for CSCI
+  * Google imagery + time slider
+  
+* Field data
+  * SWAMP, SMC, CEDEN 
+  
+* Local knowledge
+  * Field notes
+  * Site photos
+
+* Additional external datasets
+  * weather conditions (noaa.gov/weather)
+  * Fire perimeters
+  * Dredging (?)
+  * Mining (?)
+  * Timer harvest/silviculture (?)
+  
+## CSCI
+
+### Questions to ask
+
+For each question, provide a description of the issue, how might it affect the CSCI score, and what data to evaluate.  Rank the questions from easy to difficult, i.e., simple desktop validation vs compile external datasets.
+
+* Sample affected by natural or temporary disturbance (drought, scour, wildfire)?
+* Sampled outside typical index period?
+* Poor QA or low sample count?
+* Unusual sampling conditions (flow was too low/high for sample nets)?
+* Score is very close to decision points (e.g., 0.77 or 0.80)?
+* Unusual settings where CSCI is known to give low scores?
+* Uncertainty in score with n = 1?
+* Bad watershed delineation?
+* High variability with repeat site visits? 
+
+### Data to evaluate
+
+* Weather data
+* Fire perimeters
+* QA reports, CSCI metadata
+* Field notes
+* Upstream/downstream samples or nearby 
+* ASCI, PHAB, CRAM, water quality observations
+* Pictures
+* Reference sites
+* GIS data
+* watershed data
+* Degree of deviation from expectation
+
+## SCAPE
+
+### Questions to ask
+
+For each question, provide a description of the issue, how might it affect the LSM category, and what data to evaluate. Rank the questions from easy to difficult, i.e., simple desktop validation vs compile external datasets.
+
+* Close to landscape model breakpoints?
+* Sampling reach is atypical of segment’s overall conditions (e.g., unconstrained surrounded by constrained)?
+* Channel has migrated from nominal location (NHD issues)?
+* Land cover had changed?
+* Constraints not captured by model (e.g., fire impacts, dredging, mining)?
+
+### Data to evaluate
+
+* Satellite imagery
+* Site photos
+* Alternative land use/land cover data (2006, 2011 NLCD)
+* PHAB data (metrics and field notes)
+* CRAM
+* Landscape stressors not characterized by StreamCat 
+* Google images
+* Site location relative to NHD segment
+* Catchment size
+* When is lu/lc change important?
+* Reference GIS data
+
+## Conclusions
+
+What decisions do you make once CSCI/LSM are validated? 
+
+* Validated - carry on
+* Not validated - trust results anyway?
+* Not validated - get more samples?
+* Conduct RSCA (not covered here, but briefly describe)
+* Others?
+
+# High priority sites in SGR watershed
+
+* 405CE0280, SMC00480, SMC00144, SMC02972, SMC04524, SMC06496
+* Why are these high priority?
+* Validate CSCI/LSM results for each using available data to demonstrate the process
+* What conclusions are made?  
+
+# Colophon
+
+The current Git commit details are:
+
+```{r}
+# what commit is this file at? 
+git2r::repository(here::here())
+```
