@@ -1,13 +1,14 @@
 Package: SGRrsca
-Title: What the Package Does (One Line, Title Case)
+Title: Materials for San Gabriel River RSCA
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R:
+    person(given = "Marcus",
+           family = "Beck",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph)
+           email = "marcusb@sccwrp.org")
+Description: Materials for San Gabriel River RSCA
 License: MIT + file LICENSE
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
+Imports: bookdown
