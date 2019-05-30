@@ -38,11 +38,13 @@ devtools::load_all('.', quiet = T)
 
 * Who this document is for
      * Resource managers in SGR
+     * Resource managers elsewhere that might use CSCI/LSM to prioritize
      * Field crews and technicians 
+     * Assumes familiarity with CSCI and LSM, including interpretation of standard output
 
 * What this document provides
      * Checklist of questions to evaluate for considering validity of CSCI and LSM scores
-     * Organized in hierarchy from low to high effort, i.e., desktop exercise to collection/eval of external data
+     * Organized in hierarchy from low to high effort, i.e., desktop exercise to collection/eval of external data, including additional site visits
      * Decision is a judgment call based on available evidence
      
 * What this document is not
@@ -53,27 +55,58 @@ devtools::load_all('.', quiet = T)
 
 # Validation
 
-* General framework from priority to follow-up action is below, validation is a component of this broader process
+## Workflow description
 
-```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information."}
+* What is validation? 
+    * General process of confirming validity of CSCI score and LSM category for guiding management decisions
+    * Validation is within a larger framework from identifying high priority sites to follow-up action
+
+```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=3}
 knitr::include_graphics('../figures/simp_temp.png')
 ```
 
-* The validation process evaluates metadata and external datasets
-     * Identify sites/samples to validate
-     * Build validation tool set
-     * Verify against validation criteria
-     * Make final decision
-     
+* The workflow
+    * Grey boxes: validation process
+    * Green boxes: datasets
+    * Pink boxes: decision nodes
+    * Yellow boxes: validation outcomes
+
+* Validation process
+    * Evaluate both CSCI and LSM
+    * Can be invalidated at any step
+    * Desktop validation - uses readily available data from CSCI output of SCAPE website
+    * External validation - requires evaluation of external datasets, including supporting GIS data, field informatin, etc.
+
+<!-- The following is a list of several questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple desktop evaluations (e.g., examination of the metadata that are included with standard CSCI output) or more challenging questions may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions.        -->
+
+* Datasets as two basic types
+    * Metadata or other readily available QAQC info
+    * Supporting data (external GIS, field data, etc.)
+    
+* Decisions cause you to continue validation or reach a validation outcomes
+
+* Validations outcomes: What decisions do you make once CSCI/LSM are/aren't validated? 
+    * The CSCI score is as expected or the site is otherwise low priority - continue baseline maintenance and monitoring
+    * Validated 
+         * Conduct RSCA
+         * Other alternative action
+    * Not validated for CSCI or LSM
+         * trust results anyway
+         * get more samples
+         * visit site
+         
 ## Data sources
 
 List of resources to assist with building the validation tool set - can go here or in appendix.
 
-* Metadata QA/QC
-  * CSCI metadata (consult CSCI SOP and package documentation)
-  * SCAPE website
-  * Reference site information
-  
+### Metadata 
+
+* CSCI metadata (consult CSCI SOP and package documentation)
+* SCAPE website
+* Reference site information
+
+### Supporting data
+
 * GIS data
   * StreamCat
   * NHD hydrography
@@ -81,28 +114,21 @@ List of resources to assist with building the validation tool set - can go here 
   * LU/LC data - NLCD 2006, 2011, NAIP aerial imagery
   * GIS metrics for CSCI
   * Google imagery + time slider
-  
 * Field data
   * SWAMP, SMC, CEDEN 
-  
 * Local knowledge
   * Field notes
   * Site photos
-
 * Additional external datasets
   * weather conditions (noaa.gov/weather)
   * Fire perimeters
   * Dredging (?)
   * Mining (?)
   * Timer harvest/silviculture (?)
-  
+    
 ## CSCI
 
-### Questions to ask
-
-The following is a list of several questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple desktop evaluations (e.g., examination of the metadata that are included with standard CSCI output) or more challenging questions may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions. 
-
-#### Desktop validation
+### Desktop validation
 
 These questions can be addressed by consulting the SOP guidelines for the CSCI and/or the metadata that are included in the CSCI output.  
 
@@ -130,7 +156,7 @@ knitr::include_graphics('../figures/coreex2.png')
 
 The SOP guidelines for field sampling of macroinvertebraes [@Ode16] states the typical index period from May through September to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in soutern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range will likely not produce a representative sample for which the CSCI can be used.  Sample dates can be verified from the raw data used to calculate the CSCI.  
     
-#### External validation
+### External validation
 
 These questions require additional datasets or field visits for validation.  
 
@@ -145,7 +171,7 @@ CSCI scores may be invalid if the sample was affected by natural or temporary di
 6) High variability with repeat site visits? 
 7) Score is very close to decision points (e.g., 0.77 or 0.80)?
 
-### Data to evaluate
+Data to evaluate
 
 * Weather data
 * Fire perimeters
@@ -161,17 +187,18 @@ CSCI scores may be invalid if the sample was affected by natural or temporary di
 
 ## SCAPE
 
-### Questions to ask
-
-For each question, provide a description of the issue, how might it affect the LSM category, and what data to evaluate. Rank the questions from easy to difficult, i.e., simple desktop validation vs compile external datasets.
+### Desktop validation
 
 * Close to landscape model breakpoints?
 * Sampling reach is atypical of segment’s overall conditions (e.g., unconstrained surrounded by constrained)?
+
+### External validation
+
 * Channel has migrated from nominal location (NHD issues)?
-* Land cover had changed?
+* Land cover has changed?
 * Constraints not captured by model (e.g., fire impacts, dredging, mining)?
 
-### Data to evaluate
+Data to evaluate
 
 * Satellite imagery
 * Site photos
@@ -184,16 +211,6 @@ For each question, provide a description of the issue, how might it affect the L
 * Catchment size
 * When is lu/lc change important?
 * Reference GIS data
-
-## Conclusions
-
-What decisions do you make once CSCI/LSM are validated? 
-
-* Validated - carry on
-* Not validated - trust results anyway?
-* Not validated - get more samples?
-* Conduct RSCA (not covered here, but briefly describe)
-* Others?
 
 # High priority sites in SGR watershed
 
