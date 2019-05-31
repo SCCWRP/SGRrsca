@@ -59,7 +59,7 @@ devtools::load_all('.', quiet = T)
 
 * What is validation? 
     * General process of confirming validity of CSCI score and LSM category for guiding management decisions
-    * Validation is within a larger framework from identifying high priority sites to follow-up action
+    * Validation is within a larger framework that begins with identifying high priority sites and ends with follow-up action
 
 ```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=3}
 knitr::include_graphics('../figures/simp_temp.png')
@@ -74,8 +74,8 @@ knitr::include_graphics('../figures/simp_temp.png')
 * Validation process
     * Evaluate both CSCI and LSM
     * Can be invalidated at any step
-    * Desktop validation - uses readily available data from CSCI output of SCAPE website
-    * External validation - requires evaluation of external datasets, including supporting GIS data, field informatin, etc.
+    * Desktop validation - uses readily available data from CSCI output or SCAPE website
+    * External validation - requires evaluation of external datasets, including supporting GIS data, field information, etc.
 
 <!-- The following is a list of several questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple desktop evaluations (e.g., examination of the metadata that are included with standard CSCI output) or more challenging questions may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions.        -->
 
@@ -83,7 +83,7 @@ knitr::include_graphics('../figures/simp_temp.png')
     * Metadata or other readily available QAQC info
     * Supporting data (external GIS, field data, etc.)
     
-* Decisions cause you to continue validation or reach a validation outcomes
+* Decisions determine if you continue validation or reach a validation outcome
 
 * Validations outcomes: What decisions do you make once CSCI/LSM are/aren't validated? 
     * The CSCI score is as expected or the site is otherwise low priority - continue baseline maintenance and monitoring
