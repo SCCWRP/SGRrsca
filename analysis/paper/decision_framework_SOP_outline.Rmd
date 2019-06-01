@@ -159,7 +159,7 @@ Data to evaluate
 ## SCAPE
 
 1) Close to landscape model breakpoints?
-1) Sampling reach is atypical of segment’s overall conditions (e.g., unconstrained surrounded by constrained)?
+1) Segment class is atypical of surrounding segments or landscape conditions (e.g., unconstrained surrounded by constrained)?
 1) Channel has migrated from nominal location (NHD issues)?
 1) Land cover has changed?
 1) Constraints not captured by model (e.g., fire impacts, dredging, mining)?
