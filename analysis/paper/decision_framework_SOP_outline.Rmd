@@ -30,7 +30,7 @@ devtools::load_all('.', quiet = T)
 * CSCI is the foundation of stream bioassessment in CA
      * Robust as an assessment method
      * May not be reliable if standard sampling or procedures are not followed, or external events affect a sample
-     * We need an approach to determine if a particular sample cannot be reliably used with the CSI
+     * We need an approach to determine if a particular sample cannot be reliably used with the CSCI
 
 * The landscape model (LSM) provides a context for CSCI scores
      * What are constraints and how are they determined with the LSM
@@ -107,7 +107,7 @@ List of resources to assist with building the validation tool set - can go here 
 
 * CSCI metadata (consult CSCI SOP and package documentation)
 * SCAPE website
-* Reference site information
+* Reference site information (most similar references sites to the test site, will have an R function for this)
 
 ### Phase 2 data
 
@@ -138,9 +138,8 @@ List of resources to assist with building the validation tool set - can go here 
 1) Was the sample affected by temporary disturbances?
 1) Unusual sampling conditions (flow was too low/high for sample nets)?
 1) Unusual settings where CSCI is known to give low scores?
-1) Uncertainty in score with n = 1? Or high variability with repeat visits? 
+1) Uncertainty in score with n = 1? Or high variability with repeat visits? Or score is very close to decision points (e.g., 0.77 or 0.80)?
 1) Bad watershed delineation?
-1) Score is very close to decision points (e.g., 0.77 or 0.80)?
 
 Data to evaluate
 
