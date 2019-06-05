@@ -1,0 +1,123 @@
+---
+title: "Decision framework for SCAPE validation: SOP"
+author:
+  - Marcus Beck
+  - Raphael Mazor
+  - Scott Johnson
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+    bookdown::word_document2:
+      toc: false
+      fig_caption: yes
+      reference_docx: "../templates/my_styles.docx" # Insert path for the DOCX file
+---
+
+```{r, setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  comment = "#>",
+  fig.path = "../figures/"
+)
+
+devtools::load_all('.', quiet = T)
+```
+
+# Background
+
+* CSCI is the foundation of stream bioassessment in CA
+
+* The landscape model (LSM) provides a context for CSCI scores
+
+* We need to validate the information for high priority sites
+
+* Who this document is for
+
+* What this document provides
+
+* What this document is not
+
+# Validation
+
+## Workflow description
+
+* What is validation? 
+    * General process of confirming validity of CSCI score and LSM category for guiding management decisions
+    * Validation is within a larger framework that begins with comparing CSCI scores to LSM classification and ends with a decision on how to proceed (e.g., rapid screening for causal assessment, accept as is, collect more data)
+
+* Validation process
+    * Evaluate both CSCI and LSM assessments
+    * The assessment can be invalidated at any step, which may prompt collection of appropriate data
+    * Desktop validation - uses readily available data from CSCI output or SCAPE website
+    * External validation - requires evaluation of external datasets, including supporting GIS data, field information, etc.
+
+* Types of recommended and required data
+    * CSCI QAQC info
+    * LSM QAQC info, SCAPE eval
+    * Supporting data (external GIS, field data, etc.)
+    
+* Decisions determine if you continue validation or reach a validation outcome
+
+* Validations outcomes: What decisions do you make once CSCI/LSM are/aren't validated? 
+    * The CSCI score is as expected or the site is otherwise low priority - continue baseline maintenance and monitoring
+    * Validated 
+         * Conduct RSCA
+         * Other alternative action
+    * Not validated for CSCI or LSM
+         * trust results anyway
+         * get more samples
+         * visit site
+         
+## Data sources
+
+List of resources to assist with building the validation tool set - can go here or in appendix.
+
+* CSCI metadata (consult CSCI SOP and package documentation)
+* SCAPE website
+* Reference site information (most similar references sites to the test site, will have an R function for this)
+* GIS data
+  * StreamCat
+  * NHD hydrography
+  * Catchment/Watershed layers
+  * LU/LC data - NLCD 2006, 2011, NAIP aerial imagery
+  * GIS metrics for CSCI
+  * Google imagery + time slider
+* Field data
+  * SWAMP, SMC, CEDEN 
+* Local knowledge
+  * Field notes
+  * Site photos
+* Additional external datasets
+  * weather conditions (noaa.gov/weather)
+  * Fire perimeters
+  * Dredging (?)
+  * Mining (?)
+  * Timer harvest/silviculture (?)
+    
+## CSCI
+
+1) Is the sample count sufficient?
+1) Are there many ambiguous individuals or taxa? 
+1) Was the sample outside of the typical index period?
+1) Was the sample affected by temporary disturbances?
+1) Unusual sampling conditions (flow was too low/high for sample nets)?
+1) Unusual settings where CSCI is known to give low scores?
+1) Uncertainty in score with n = 1? Or high variability with repeat visits? Or score is very close to decision points (e.g., 0.77 or 0.80)?
+1) Bad watershed delineation?
+
+## SCAPE
+
+1) Close to landscape model breakpoints?
+1) Segment class is atypical of surrounding segments or landscape conditions (e.g., unconstrained surrounded by constrained)?
+1) Channel has migrated from nominal location (NHD issues)?
+1) Land cover has changed?
+1) Constraints not captured by model (e.g., fire impacts, dredging, mining)?
+
+# High priority sites in SGR watershed
+
+* 405CE0280, SMC00480, SMC00144, SMC02972, SMC04524, SMC06496
+* Why are these high priority?
+* Validate CSCI/LSM results for each using available data to demonstrate the process
+* What conclusions are made?  
