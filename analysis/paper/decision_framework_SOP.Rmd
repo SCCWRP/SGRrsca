@@ -171,11 +171,16 @@ CSCI scores may be invalid if the sample was affected by natural or temporary di
 
 1) Was the sample outside of the typical index period?
 
-The SOP guidelines for field sampling of macroinvertebraes [@Ode16] states the typical index period from May through September to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in soutern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range will likely not produce a representative sample for which the CSCI can be used.  Sample dates can be verified from the raw data used to calculate the CSCI.  
+The SOP guidelines for field sampling of macroinvertebraes [@Ode16] states the typical index period from May through September to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated.  Sample dates can be verified from the raw data used to calculate the CSCI.  However, published research has suggested that CSCI scores are relatively invariant to seasonal changes, so this question is giver a lower priority for validation. 
 
 2) Are there Unusual settings where CSCI is known to give low scores?
 
 3) Bad watershed delineation?
+
+The CSCI requires data describing landscape characteristics of the watershed for a site.  These data are used to develop a predictive expectation of the macroinvertebrate commmunity that could be the site under reference condition.  In order to obtain these landscape data, a watershed delineation is required for every site. The CSCI SOP describes in detail how these delineations are obtained.  In short, a digital elevation model is used with the site's longitude/latitude to identify the area of land where all elevations are increasing and higher than the starting elevation of the site.  This watershed is then used to calculate landscape-level data needed for the CSCI, such as the total elevation range, average precipitation, and various soil characteristics.  An inaccurate representation of the watershed can produce inaccurate estimates of the landscape data used to calculate the CSCI.
+
+The watershed delineation process is automated using standard geosptial software, with some intervention and manual inputs from the user.  In general, watershed delineations 
+
 
 Data to evaluate
 
