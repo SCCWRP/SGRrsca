@@ -234,6 +234,15 @@ There are few locations in California where the CSCI is known to give low scores
 
 The simplest way to determine if a site represents an unusual setting is to evaluate the relevant pool of reference sites that apply to a site.  CSCI scores are determined using expectations from references sites that describe the expected community in the absence of anthropogenic stress.  The reference sites that have the largest weights in calculating the CSCI score are determined based on the most similar reference sites in a region for a site. The CSCI cannot adequately distinguish between anthropogenic and natural variation if these representative reference sites do not match well to the expected community at the test site.  In such cases, unsual geological settings may be a reasonable explanation for low CSCI scores.  Evaluating reference site pools with detailed geological maps may provide the necessary information to validate a CSCI score.
 
+[Streamstats](https://streamstats.usgs.gov/ss/)
+
+```{r baddel, fig.cap = 'A good watershed delineation'}
+knitr::include_graphics(here('analysis/figures', 'good_delin.PNG'))
+```
+
+```{r gooddel, fig.cap = 'A questionable watershed delineation'}
+knitr::include_graphics(here('analysis/figures', 'bad_delin.PNG'))
+```
 
 Data to evaluate
 
