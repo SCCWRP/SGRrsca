@@ -13,7 +13,7 @@ output:
       reference_docx: "../templates/my_styles.docx" # Insert path for the DOCX file
 ---
 
-```{r, setup, echo = FALSE}
+```{r, setup, echo = FALSE, message = FALSE, warning = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   warning = FALSE,
@@ -43,7 +43,7 @@ devtools::load_all('.', quiet = T)
 * CSCI is the foundation of stream bioassessment in CA
      * Robust as an assessment method
      * May not be reliable if standard sampling or procedures are not followed, or external events affect a sample
-     * We need an approach to determine if a particular sample cannot be reliably used with the CSI
+     * We need an approach to determine if a particular sample cannot be reliably used with the CSCI
 
 * The landscape model (LSM) provides a context for CSCI scores
      * What are constraints and how are they determined with the LSM
@@ -92,7 +92,7 @@ knitr::include_graphics('../figures/simp_temp.png')
 * Validation process
     * Evaluate both CSCI and LSM assessments
     * The assessment can be invalidated at any step, which may prompt collection of appropriate data
-    * Validation priorities - consider the diffulty answering the question and the importance of the question (i.e., how badly does the information need to be verified to consider a score valid. 
+    * Validation priorities - consider the difficulty answering the question and the importance of the question (i.e., how badly does the information need to be verified to consider a score valid. 
     * Desktop validation - uses readily available data from CSCI output or SCAPE website, these are low effort questions
     * External validation - requires evaluation of external datasets, including supporting GIS data, field information, etc., these are high effort questions
 
@@ -196,7 +196,7 @@ knitr::include_graphics('../figures/coreex2.png')
 
 3) Was the sample affected by unusual sampling conditions? 
 
-CSCI scores may be invalid if the sample was affected by natural or temporary disurbances.  The SWAMP sampling protocol indicates that sampling should occur during normal, baseflow conditions.  Sampling outside of these conditions, even during the normal index period from May to September, may result in depressed CSCI scores.  Field notes may indicate if abnormal conditions were present.  Exernal datasets, such as flow records or time and location of fire events, may also provide clues of abnormal conditions. Types of disturbances could include: 
+CSCI scores may be invalid if the sample was affected by natural or temporary disturbances.  The SWAMP sampling protocol indicates that sampling should occur during normal, baseflow conditions.  Sampling outside of these conditions, even during the normal index period from May to September, may result in depressed CSCI scores.  Field notes may indicate if abnormal conditions were present.  External datasets, such as flow records or time and location of fire events, may also provide clues of abnormal conditions. Types of disturbances could include: 
 
 1) Abnormal flow
      1) high flow after a rain event that can scour a stream channel
@@ -206,33 +206,27 @@ CSCI scores may be invalid if the sample was affected by natural or temporary di
 1) In channel vegetation management or debris removal 
 1) Fire location and intensity
 
-It is also important to note that the CSCI is sensitive to stressors that may be caused by unusual events and that the score is valid in these instances, although it is not representative of "normal" conditions.  The answer to whether or not a CSCI score is valid after a temporary disturbance depends on the objective of the sampling.  If the sampling is meant to capture the effects of these events, then the score is valid.  However, if the objecive is to evaluate "normal", long-term conditions at a site, then the score is not valid.  In the latter case, field crews may be unaware of temporary events that can depress CSCI scores.  If there is reason to question a score based on an unsual sampling condition, external data must be consulted. Field notes may be the best source of information.
+It is also important to note that the CSCI is sensitive to stressors that may be caused by unusual events and that the score is valid in these instances, although it is not representative of "normal" conditions.  Whether or not a CSCI score is valid after a temporary disturbance depends on the objective of the sampling.  If the sampling is meant to capture the effects of these events, then the score is more than likely valid.  However, if the objective is to evaluate "normal", long-term conditions at a site, then the score may not represent these baseline conditions.  In the latter case, field crews may be unaware of temporary events that can depress CSCI scores.  If there is reason to question a score based on an unusual sampling condition, external data must be consulted. Field notes may be the best source of information.
 
 ### Phase 2 questions    
 
 1) Was the sample outside of the typical index period?
 
-The SOP guidelines for field sampling of macroinvertebraes [@Ode16b] states the typical index period as being from __May__ through __September__ to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated.  Sample dates can be verified from the raw data used to calculate the CSCI.  However, published research has suggested that CSCI scores are relatively invariant to seasonal changes, so this question is giver a lower priority for validation. 
+The SOP guidelines for field sampling of macroinvertebrates [@Ode16b] states the typical index period as being from __May__ through __September__ to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated.  Sample dates can be verified from the raw data used to calculate the CSCI.  However, published research has suggested that CSCI scores are relatively invariant to seasonal changes, so this question is giver a lower priority for validation. 
 
-2) Does the siat have a bad watershed delineation?
+2) Does the site have a bad watershed delineation?
 
-The CSCI requires data describing landscape characteristics of the watershed for a site.  These data are used to develop a prediction of the macroinvertebrate commmunity that could be expected at the site under reference conditions.  A watershed delineation is required for a site to obtain these landscape data for the CSCI predictions. The CSCI interim instructions [@Mazor18b] describe in detail how these delineations can be created.  In short, a digital elevation model is used with the site's longitude/latitude to identify the area of land where all elevations are increasing and higher than the starting elevation of the site.  This watershed is then used to calculate landscape-level data needed for the CSCI, such as the total elevation range, average precipitation, and various soil characteristics.  An inaccurate representation of the watershed can produce inaccurate estimates of the landscape data used to calculate the CSCI.
+The CSCI requires data describing landscape characteristics of the watershed for a site.  These data are used to develop a prediction of the macroinvertebrate community that could be expected at the site under reference conditions.  A watershed delineation is required for a site to obtain these landscape data for the CSCI predictions. The CSCI interim instructions [@Mazor18b] describe in detail how these delineations can be created.  In short, a digital elevation model is used with the site's longitude/latitude to identify the area of land where all elevations are increasing and higher than the starting elevation of the site.  This watershed is then used to calculate landscape-level data needed for the CSCI, such as the total elevation range, average precipitation, and various soil characteristics.  An inaccurate representation of the watershed can produce inaccurate estimates of the landscape data used to calculate the CSCI.
 
 The watershed delineation process is automated using standard geosptial software, with some intervention and manual inputs from the user.  In general, delineations will accurately represent the watershed at the site if: 
 
-1) The site location is spatially co-located with a stream reach, and
+* The site location is spatially co-located with a stream reach, and
 
-1) The actual draininage area is well-represented by topography. 
+* The actual drainage area is well-represented by topography. 
 
 For the first scenario, the site location is typically referenced by longitude/latitude coordinates.  For delineation, these coordinates must be spatially linked to a stream reach in a GIS.  These stream reaches are represented by the NHD-Plus dataset [@McKay12], which is a national-level product describing stream hydrography for the entire United States. The first step in the delineation is to "snap" the site location to the nearest stream stream reach.  If the site location is imprecise or was entered incorrectly, the snapping distance can be large.  Conversely, the stream reach in the NHD-Plus dataset may not accurately portray the true channel.  In either case, the resulting watershed will originate from a location that does not represent reality.  Visual assessment of the site location, the segment that was used for the delineation, and the snapping distance can provide clues about the quality of the delineation.  
 
-For the second scenario, topographical characteristics of the landscape around a site can also affect the quality of the delineation.  In general, watershed boundaries are more easily identified at high gradient sites in hilly or mountainous areas where toporaphical boundaries are easily identified.  Conversely, low gradient streams may have less accurate watershed delineations because it is more difficult to identify clear elevation differences that define drainage patterns.  The latter scenario is more common in coastal plains, plateaus, or other low elevation areas.  Developed landscapes also complicate watershed delineations because the natural flow of water may have been significantly altered.  In these cases, water may not follow strict topographical boundaries due to channelization or diversions. Overlaying the watershed delineation on aerial photos can provide clues about the effet of land use alteration on flow patterns and if the delineation is strongly driven by topography.   
-
-3) Are there unusual settings where CSCI is known to give low scores?
-
-There are few locations in California where the CSCI is known to give low scores, although in some settings the biological community is naturally low in diversity.  In these scenarios, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]) and can have an influence on the physical and chemical characteristics of the stream that then limits diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
-
-The simplest way to determine if a site represents an unusual setting is to evaluate the relevant pool of reference sites that apply to a site.  CSCI scores are determined using expectations from references sites that describe the expected community in the absence of anthropogenic stress.  The reference sites that have the largest weights in calculating the CSCI score are determined based on the most similar reference sites in a region for a site. The CSCI cannot adequately distinguish between anthropogenic and natural variation if these representative reference sites do not match well to the expected community at the test site.  In such cases, unsual geological settings may be a reasonable explanation for low CSCI scores.  Evaluating reference site pools with detailed geological maps may provide the necessary information to validate a CSCI score.
+For the second scenario, topographical characteristics of the landscape around a site can also affect the quality of the delineation.  In general, watershed boundaries are more easily identified at high gradient sites in hilly or mountainous areas where topographical variation is more pronounced.  Conversely, low gradient streams may have less accurate watershed delineations because it is more difficult to identify clear elevation differences that define drainage patterns.  The latter scenario is more common in coastal plains, plateaus, or other low elevation areas.  Developed landscapes also complicate watershed delineations because the natural flow of water may have been significantly altered.  In these cases, water may not follow strict topographical boundaries due to channelization or diversions. Overlaying the watershed delineation on aerial photos can provide clues about the effect of land use alteration on flow patterns and if the delineation is strongly driven by topography.   
 
 [Streamstats](https://streamstats.usgs.gov/ss/)
 
@@ -243,6 +237,13 @@ knitr::include_graphics(here('analysis/figures', 'good_delin.PNG'))
 ```{r gooddel, fig.cap = 'A questionable watershed delineation'}
 knitr::include_graphics(here('analysis/figures', 'bad_delin.PNG'))
 ```
+
+3) Are there unusual settings where CSCI is known to give low scores?
+
+There are few locations in California where the CSCI is known to give low scores, although in some settings the biological community is naturally low in diversity.  In these scenarios, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]) and can have an influence on the physical and chemical characteristics of the stream that then limits diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
+
+The simplest way to determine if a site represents an unusual setting is to evaluate the relevant pool of reference sites that apply to a site.  CSCI scores are determined using expectations from references sites that describe the expected community in the absence of anthropogenic stress.  The reference sites that have the largest weights in calculating the CSCI score are determined based on the most similar reference sites in a region for a site. The CSCI cannot adequately distinguish between anthropogenic and natural variation if these representative reference sites do not match well to the expected community at the test site.  In such cases, unusual geological settings may be a reasonable explanation for low CSCI scores.  Evaluating reference site pools with detailed geological maps may provide the necessary information to validate a CSCI score.
+
 
 Data to evaluate
 
