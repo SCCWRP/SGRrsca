@@ -341,8 +341,8 @@ As with any decision support tool, the constraint classifications derived from t
 Figure \@ref(fig:scapemec) provides a graphical description of how the landscape constraint classes are determined.  Stream segments where the predicted 90th quantile score iss below the
 biological objective threshold are considered likely constrained, whereas those where the predicted 10th percentile is above the threshold are considered likely unconstrained. Possibly constrained and possibly unconsrained are assigned if the score expectations overlap the biological objective and the median score is below or above the objective, respctively.
 
-```{r scapemec, fig.cap = 'Decision points and methods for defining sream classifications from the landscape model.}
-knitr::include_graphics(here("analysis/paper", "scapemec.png"))
+```{r scapemec, fig.cap = 'Decision points and methods for defining sream classifications from the landscape model.'}
+knitr::include_graphics(here("analysis/figures", "scapemec.jpeg"))
 ```
 
 Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classificaton change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objecive changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points.  If the stream class does not change with different decision points, then the the stream class has high confidence.  However, if changing decision points dramatically changes the stream class and conclusions about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
