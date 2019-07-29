@@ -61,65 +61,34 @@ devtools::load_all('.', quiet = T)
      * Resource managers elsewhere that might use CSCI/LSM to prioritize and have similar needs when interpreting bioassessment data
      * Assumes familiarity with CSCI and LSM, including interpretation of standard output
 
-* What this document provides
-     * Checklist of questions to evaluate for considering validity of CSCI and LSM scores
-     * Organized in hierarchy from low to high effort, i.e., desktop exercise to collection/eval of external data, including additional site visits
-     * A decision-support tool to help gather evidence for judgement calls by managers
-     
-* What this document is not
-     * Not a validation of the CSCI as an index - it is a validation of the sample
-     * Not a validation of LSM as a model - it is a validation of the data used to define the class
-     * No policy recommendations for considering a sample/score valid, this is part of normal QA/QC
-     * Does not define what action is pursued once CSCI/LSM are validated
+This document provides a checklist of questions to evaluate when considering the validity of CSCI or landscape model results at high priority sites.  The validation process is organized hierarchically from low to high effort, starting with the simplest questions that are easy to answer and should be evaluated with any assessment.  High effort questions are those that may require additional data or the certainty of the conclusions may require some level of professional judgment.  
+
+Most importantly, this document is not a validation of the CSCI as an index, rather it is a validation of the quality of the sample used to estimate the CSCI score.  Likewise, the document is a validation of the data used to estimate the stream classification from the landscape model and not a validation of the latter as a method for defining biological constraints.  There are no policy recommendations herein for what makes a sample and/or score valid; validation should be part of normal QA/QC.  Lastly, the document does not provide specific recommendations on what actions are pursued after validation occurs.
 
 # Validation
 
 ## Workflow description
 
-* What is validation? 
-    * General process of confirming validity of CSCI score and LSM category for guiding management decisions
-    * Validation is within a larger framework that begins with comparing CSCI scores to LSM classification and ends with a decision on how to proceed (e.g., rapid screening for causal assessment, accept as is, collect more data)
+Validation is the process of confirming validity of a CSCI score and stream channel classification from the landscape model.  A "valid" CSCI score or classification is determined from professional judgment after reviewing appropriate data as being a sufficient description of the biological condition or constraint class, respectively, within the limits of the methods used to estimate each component. Validation is also within the larger framework of comparing CSCI scores to results form the landscape model to develop priorities, such that high priority sites identified through this process should undergo validation prior to follow-up actions.  The validation process ends with a determination on whether or not the CSCI score and/or landscape model classification are sufficiently accurate to warrant follow-up management actions. 
 
-```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=3}
+```{r valflo, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=3}
 knitr::include_graphics('../figures/simp_temp.png')
 ```
 
-* The workflow
-    * Grey boxes: validation process
-    * Green boxes: datasets
-    * Pink boxes: decision nodes
-    * Yellow boxes: validation outcomes
+The conceptual framework for the validation process is shown in Figure \@ref(fig:valflo).  High priority sites are first identified by comparing CSCI scores to expectations from the landcape model. Validation can occur if a a site is considered high priority, which may be a site that has a CSCI score that is not within the expected range.  If the site is otherwise low priority, then baseline monitoring and maintenance should be continued.  For high priority sites, the validation process is shown in the light grey box in Figure \@ref(fig:valflo).  Separate but parallel processes occur for validating both the CSCI score and lanscape model classification.  In both processes, phase one questions should be addressed first, followed by phase 2 questions if validation is still required after phase 1.  Validation questions are described in phases as follows: 
 
-* Validation process
-    * Evaluate both CSCI and LSM assessments
-    * The assessment can be invalidated at any step, which may prompt collection of appropriate data
-    * Validation priorities - consider the difficulty answering the question and the importance of the question (i.e., how badly does the information need to be verified to consider a score valid. 
-    * Phase 1 validation - uses readily available data from CSCI output or SCAPE website, these are low effort questions
-    * Phase 2 validation - requires evaluation of external datasets, including supporting GIS data, field information, etc., these are high effort questions
+* Phase 1: Require minimal effort to answer and the certainty of the result is unambiguous.  Phase 1 data are easily accessible and typically include metadata or other supporting information that are usually included with a CSCI score or landscape model result.
 
-```{r, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=1}
+* Phase 2: Require moderate to high level of effort to answer and the certainty of the result may not be completely unambiguous.  Phase 2 data are external and require some effort to obtain for evaluation of the CSCI score and landscape model result.  The certainty of the result may be ambiguous such that a judgment call may be needed as to whether or not the conclusions about validity are final.  
+
+The phase 1 and 2 questions can also be described using the classification matrix in Figure \@ref(fig:phasex). Phase 1 questions are high priority (dark green box) because they are low effort to answer and confidence in the results is high regarding the validation conclusion.  Conversely, phase 2 question are medium to low priority because 1) confidence in the validation conclusion is low, 2) there is a high level of effort associated with answering the question, or 3) both the confidence is low and the effort is high.
+
+```{r phasex, fig.cap="A simplified framework for validating CSCI and SCAPE information.", fig.height=1}
 knitr::include_graphics('../figures/validation_priority.png')
 ```
 
-<!-- The following is a list of several questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple desktop evaluations (e.g., examination of the metadata that are included with standard CSCI output) or more challenging questions may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions.        -->
+A CSCI score or landscape model result can be invalidated by any question in the validation process.  A final conclusion is that one or both of the results are invalidated and that more data may be needed, which can include a site visit to collect information or to verify existing data.  Once new data are obtained or existing data are confirmed, the validation process is reinitiated.  The process occurs iteratively until both the CSCI score and landcape model result are sufficiently validated, i.e., the analyst has confidence the the results of both are sufficient for pursuing follow-up actions. If both are validated, the validation process is finished and additional actions can be pursued, which may included rapid causal analysis to determine why biological condition differs from the expectation. If it is not possible to validate the information with additional data, the analyst can also decide to proceed with follow-up actions regardless of the results.  In other words, the analyst may decide to trust the results based on their professional judgment, regardless of what the validation process provided.  
 
-* Types of recommended and required data
-    * CSCI QAQC info
-    * LSM QAQC info, SCAPE eval
-    * Supporting data (external GIS, field data, etc.)
-    
-* Decisions determine if you continue validation or reach a validation outcome
-
-* Validations outcomes: What decisions do you make once CSCI/LSM are/aren't validated? 
-    * The CSCI score is as expected or the site is otherwise low priority - continue baseline maintenance and monitoring
-    * Validated 
-         * Conduct RSCA
-         * Other alternative action
-    * Not validated for CSCI or LSM
-         * trust results anyway
-         * get more samples
-         * visit site
-         
 ## Data sources
 
 List of resources to assist with building the validation tool set - can go here or in appendix.
@@ -152,6 +121,8 @@ List of resources to assist with building the validation tool set - can go here 
   * Timer harvest/silviculture (?)
     
 ## CSCI
+
+The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple phase 1 questions (e.g., examination of the metadata that are included with standard CSCI output) or phase 2 questions that may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions.
 
 ### Phase 1 questions 
 
@@ -231,7 +202,7 @@ For the first scenario, the site location is typically referenced by longitude/l
 
 For the second scenario, topographical characteristics of the landscape around a site can also affect the quality of the delineation.  In general, watershed boundaries are more easily identified at high gradient sites in hilly or mountainous areas where topographical variation is more pronounced.  Conversely, low gradient streams may have less accurate watershed delineations because it is more difficult to identify clear elevation differences that define drainage patterns.  The latter scenario is more common in coastal plains, plateaus, or other low elevation areas.  Developed landscapes also complicate watershed delineations because the natural flow of water may have been significantly altered.  In these cases, water may not follow strict topographical boundaries due to channelization or diversions. Overlaying the watershed delineation on aerial photos can provide clues about the effect of land use alteration on flow patterns and if the delineation is strongly driven by topography.   
 
-The original GIS file for the watershed delineation should be viewed to assess the relative quality.  If this file is unavaialble, the [Streamstats](https://streamstats.usgs.gov/ss/) website can provide some clues about the watershed delineation.  Figures \@ref(fig:delinex) provides examples of two extremes when watershed delineations can be produced with differing quality.  Figure \@ref(fig:delinex)a shows a low gradient stream in an urban setting. The watershed boundaries are not easily identify from elevation gradients and the digitized stream channels probably do not accurately reflect the flow of water in this altered landscape. Conversely, figure \@ref(fig:delinex)b shows a high gradient stream in a mountainous, undeveloped area.  In this scenario, the topography is sufficiently pronounced to easily identify the watershed boundaries and the hydrological flow likely follows these boundaries.  
+The original GIS file for the watershed delineation should be viewed to assess the relative quality.  If this file is unavailable, the [Streamstats](https://streamstats.usgs.gov/ss/) website can provide some clues about the watershed delineation.  Figures \@ref(fig:delinex) provides examples of two extremes when watershed delineations can be produced with differing quality.  Figure \@ref(fig:delinex)a shows a low gradient stream in an urban setting. The watershed boundaries are not easily identify from elevation gradients and the digitized stream channels probably do not accurately reflect the flow of water in this altered landscape. Conversely, figure \@ref(fig:delinex)b shows a high gradient stream in a mountainous, undeveloped area.  In this scenario, the topography is sufficiently pronounced to easily identify the watershed boundaries and the hydrological flow likely follows these boundaries.  
 
 ```{r delinex, fig.cap = 'Watershed delineation examples.'}
 knitr::include_graphics(here('analysis/figures', 'delinex.png'))
@@ -239,7 +210,7 @@ knitr::include_graphics(here('analysis/figures', 'delinex.png'))
 
 3) Are there unusual settings where CSCI is known to give low scores?
 
-There are a few locations in California where the CSCI scores may be unreliable, although they are not formally documented nor well understood.  In these locations, scores may be depressed because the biological communicity may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]) and can have an influence on the physical and chemical characteristics of the stream that then limits diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
+There are a few locations in California where the CSCI scores may be unreliable, although they are not formally documented nor well understood.  In these locations, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]) and can have an influence on the physical and chemical characteristics of the stream that then limits diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
 
 Local site knowledge from field crews could provide information on abnormal locations where the biological expectations are naturally different from other streams in the region. In most cases, field crews will likely already be aware of locations where standard bioassessment methods produce odd or unexpected results compared to other locations.  Detailed geological maps may also provide clues regarding localized environmental differences that could influence the score.  
 
@@ -265,9 +236,9 @@ The phase 1 questions are high priority, meaning they can be answered with minim
 
 1) Is the sampling reach atypical of a segment’s overall conditions (e.g., unconstrained surrounded by constrained)?
 
-The landscape model assigns a constraint class to digitized reaches in the NHD-Plus stream hydrography layer.  A reach can be described as one of four classes: likely constrained, possibly constrained, possibly unconstrained, likely unconstrained.  Typically, stream reaches of the same class co-occur in space such that it is more likely that a constrained reach is surrounded by other constrained reaches and an unconstrained reach is surrounded by other unconstrained reaches. Occasionally, a stream segment will have a constraint class that different or otherwise unexpected based on the classes for reaches nearby.  For example, an unconstrained reach may be found in an urban setting where reaches upstream and downsream are constrained.  In these cases, the constraint class should be investigated. 
+The landscape model assigns a constraint class to digitized reaches in the NHD-Plus stream hydrography layer.  A reach can be described as one of four classes: likely constrained, possibly constrained, possibly unconstrained, likely unconstrained.  Typically, stream reaches of the same class co-occur in space such that it is more likely that a constrained reach is surrounded by other constrained reaches and an unconstrained reach is surrounded by other unconstrained reaches. Occasionally, a stream segment will have a constraint class that different or otherwise unexpected based on the classes for reaches nearby.  For example, an unconstrained reach may be found in an urban setting where reaches upstream and downstream are constrained.  In these cases, the constraint class should be investigated. 
 
-Viewing an aerial image of land use for a site is the easiest way to assess the validity of an unexpected stream class.  As an example, the online [SCAPE](https://sccwrp.shinyapps.io/scape) application provides this information for the San Gabriel River Watershed. Figure \@ref(fig:scapex) shows a stream reach that is assigned a class of likely unconstrained, even though all of the reaches around it are possibly or likely constrained.  Without looking at the land use, we might assume that this constraint class is invalid (Figure \@ref(fig:scapex)a). We can toggle the base layer to show a satellite image of the location to get a better idea (Figure \@ref(fig:scapex)b).  From the satellite image we can see that this reach drains a small undeveloped, hilly area upstream of the housing units.  With this information we can assume that the consraint class is valid because it acccurately reflects land use in the watershed.
+Viewing an aerial image of land use for a site is the easiest way to assess the validity of an unexpected stream class.  As an example, the online [SCAPE](https://sccwrp.shinyapps.io/scape) application provides this information for the San Gabriel River Watershed. Figure \@ref(fig:scapex) shows a stream reach that is assigned a class of likely unconstrained, even though all of the reaches around it are possibly or likely constrained.  Without looking at the land use, we might assume that this constraint class is invalid (Figure \@ref(fig:scapex)a). We can toggle the base layer to show a satellite image of the location to get a better idea (Figure \@ref(fig:scapex)b).  From the satellite image we can see that this reach drains a small undeveloped, hilly area upstream of the housing units.  With this information we can assume that the constraint class is valid because it accurately reflects land use in the watershed.
 
 ```{r scapex, fig.cap = "An unexpected stream class is validated by examining the land use, lane cover base layer."}
 knitr::include_graphics(here("analysis/figures", "scapex.png"))
@@ -312,7 +283,7 @@ cap.val <- 'Land use variables used to develop the landscape model.  All variabl
 knitr::kable(totab, booktabs = T, caption = cap.val)
 ```
 
-There is no quantitative approach to verify if the constraint class accurately reflects the current landscape.  However, the constraint class is typically an accurate representation of the current landscape becuase land use changes that affect stream biology usually occur over time scales much longer than would be expected between present day and the data used to create the model.  However, in some cases, local alteration of the landscape can occur rapidly and at a scale sufficient to affect stream condition.  For example, construction of a parking lot adjacent to a stream channel could alter drainage patterns sufficiently to affect stream health.  If there is sufficient evidence to believe that recent changes may be affecting biology and that the current constaint class is not an accurate representation of biological expectations, additioanl data may be consulted.  
+There is no quantitative approach to verify if the constraint class accurately reflects the current landscape.  However, the constraint class is typically an accurate representation of the current landscape because land use changes that affect stream biology usually occur over time scales much longer than would be expected between present day and the data used to create the model.  However, in some cases, local alteration of the landscape can occur rapidly and at a scale sufficient to affect stream condition.  For example, construction of a parking lot adjacent to a stream channel could alter drainage patterns sufficiently to affect stream health.  If there is sufficient evidence to believe that recent changes may be affecting biology and that the current constraint class is not an accurate representation of biological expectations, additional data may be consulted.  
 
 The Google Earth time slider provides a useful tool to evaluate temporal changes in land use over time that could be affecting a site.  The slider can be used to view a a current image and any of a number of images of land use and cover for the past twenty years.  An example in Figure \@ref(fig:luchng) shows a screen shot from SCAPE for a current image, including some stream channels in the possibly unconstrained class.  We see a parking lot adjacent to the stream channel.  Using Google Earth, we can view an image from 2008 to see that this parking lot was not yet constructed.  Because our land use data used to calibrate the model correspond roughly to this time period in the right image, this stream channel may be incorrectly classified.  The channel may be more accurately described as constrained. 
 
@@ -324,11 +295,11 @@ knitr::include_graphics(here('analysis/figures', 'luchng.png'))
 
 As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the phase 2 CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.  Field notes or external datasets could be consulted to determine if the site classification is warranted.
 
-A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflectd in the current model.  These legacy impacts should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
+A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
 
 3) Do the spatial data for the stream channel match the actual location on the landscape? 
 
-The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location if 1) the stream is in a landscape with altered hydrology, or 2) the stream channel has migrated over time due to normal hydro-geomorphic processes.  Figure \@ref(fig:hydroex) shows an exampe of where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
+The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location if 1) the stream is in a landscape with altered hydrology, or 2) the stream channel has migrated over time due to normal hydro-geomorphic processes.  Figure \@ref(fig:hydroex) shows an example of where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
 
 ```{r hydroex, fig.cap = "Stream hydrography in altered lanscaped.  Actual stream reaches may not be well represented by existing spatial layers."}
 knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
@@ -336,16 +307,16 @@ knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 
 4) Are the results from the landscape model close to key decision points?
 
-As with any decision support tool, the constraint classifications derived from the landscape model are categories that are based on binning continuous data.  This approach allows complex information to be distilled for communication in a more digestible format.  This improvement in communication comes at the expense of specificity - binning results reduces the type of information that can be obtained.  As an example, the landscape model would classify a stream reach as possibly constrained if the median score is 1/100 of a decimal place below the biological objective, whereas increasing that score by 0.02 points would cause the landscape model to classify the reach as possibly unconstrained.  Becuase of this, users should be aware of how the constraint classes are determine and if the results for a site are close decision points.  
+As with many decision support tools, the constraint classifications derived from the landscape model are categories that are based on binning continuous data.  This approach allows complex information to be distilled for communication in a more digestible format.  This improvement in communication comes at the expense of specificity - binning results reduces the type of information that can be obtained.  As an example, the landscape model would classify a stream reach as possibly constrained if the median score is 1/100 of a decimal place below the biological objective, whereas increasing that score by 0.02 points would cause the landscape model to classify the reach as possibly unconstrained.  Because of this, users should be aware of how the constraint classes are determine and if the results for a site are close decision points.  
 
 Figure \@ref(fig:scapemec) provides a graphical description of how the landscape constraint classes are determined.  Stream segments where the predicted 90th quantile score iss below the
-biological objective threshold are considered likely constrained, whereas those where the predicted 10th percentile is above the threshold are considered likely unconstrained. Possibly constrained and possibly unconsrained are assigned if the score expectations overlap the biological objective and the median score is below or above the objective, respctively.
+biological objective threshold are considered likely constrained, whereas those where the predicted 10th percentile is above the threshold are considered likely unconstrained. Possibly constrained and possibly unconstrained are assigned if the score expectations overlap the biological objective and the median score is below or above the objective, respectively.
 
 ```{r scapemec, fig.cap = 'Decision points and methods for defining sream classifications from the landscape model.'}
 knitr::include_graphics(here("analysis/figures", "scapemec.jpeg"))
 ```
 
-Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classificaton change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objecive changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points.  If the stream class does not change with different decision points, then the the stream class has high confidence.  However, if changing decision points dramatically changes the stream class and conclusions about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
+Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classification change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objective changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points.  If the stream class does not change with different decision points, then the the stream class has high confidence.  However, if changing decision points dramatically changes the stream class and conclusions about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
 
 * Satellite imagery
 * Site photos
