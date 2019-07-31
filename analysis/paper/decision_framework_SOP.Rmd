@@ -41,25 +41,17 @@ devtools::load_all('.', quiet = T)
 
 # Background
 
-* CSCI is the foundation of stream bioassessment in CA
-     * Robust as an assessment method
-     * May not be reliable if standard sampling or procedures are not followed, or external events affect a sample
-     * We need an approach to determine if a particular sample cannot be reliably used with the CSCI
+The California Stream Condition Index or CSCI is a robust tool for evaluating the biological integrity of streams in California using aquatic insect as indicators of stream health [@Mazor16].  The CSCI is used in routine assessments conducted by the Statewide Ambient Monitoring Program (SWAMP) and Southern California's Stormwater Monitoring Coalition regional monitoring program.  Collectively, these data represent one of the most comprehensive sources of information on biologica condition of streams in the country.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communiites to evaluate with the CSCI. 
 
-* The landscape model (LSM) provides a context for CSCI scores
-     * What are constraints and how are they determined with the LSM
-     * How can priorities be defined with the LSM
-     * When would an assessment from LSM be unreliable? 
+In many places, managers lack the context for a biological condition assessment to determine the potential range scores that are likely based on the environmental setting.  For example, managers may expect a mountain stream in an undeveloped setting to have greater biological potential than a stream in an urban setting.  Many stream reaches with low CSCI scores occur in developed urban and agricultural landscapes, where restoration can be costly and it may be difficult to achieve regional reference-like conditions.  In these situations, identifying a context for what CSCI scores are expected under current landscape conditions could be helpful for identifying where management actions are most likely to achieve intended outcomes, or conversely, where landscape alteration could limit success in achieving biological integrity.  Conversely, identifying locations where biological condition exceeds the expectation could be prioritized for conservation.  
 
-* We need to validate the information for high priority sites
-     * Does the constraint class defined by the landscape model reflect the actual landscape context for these sites?
-     * Is the biological sample used to calculate the CSCI reliable and within the standard protocol for estimating a site score?
-     * What data can we use and what questions can we ask to assess the validity of a bioassessment sample and stream class?
+The landscape model was developed to predict an expected range of CSCI scores relative to the level of landscape alteration that occurs in a watershed [@Beckir].  This model has been applied statewide to identify stream reaches that are constrained for achieving a potential biological objective for the CSCI.  Local managers are already using the landscape model with CSCI scores to prioritize sites for different management actions. For example, sites where observed scores are outside the predicted ranges from the landscape model could receive a high priority for follow-up actions, such as additional monitoring, casual assessment, or restoration. 
 
-* Who this document is for
-     * Resource managers in SGRRMP
-     * Resource managers elsewhere that might use CSCI/LSM to prioritize and have similar needs when interpreting bioassessment data
-     * Assumes familiarity with CSCI and LSM, including interpretation of standard output
+Before additional actions are pursued at high priority sites, a reasonable level of confidence is needed in the sample used to estimate the CSCI and the stream classification from the landscape model.  Samples may not be reliable if standard sampling or procedures are not followed, or external events affect a sample, producing a CSCI score that does not represent baseline conditions. Similarly, landscape model reults may not be reliable if the spatial data used to create the classification do not represent current conditions at a site.  A *validation process* is needed at high priority sites to verify the following:
+
+* Does the constraint class defined by the landscape model reflect the actual landscape context for these sites?
+* Is the biological sample used to calculate the CSCI reliable and within the standard protocol for estimating a site score?
+* What data can we use and what questions can we ask to assess the validity of a bioassessment sample and stream class?
 
 This document provides a checklist of questions to evaluate when considering the validity of CSCI or landscape model results at high priority sites.  The validation process is organized hierarchically from low to high effort, starting with the simplest questions that are easy to answer and should be evaluated with any assessment.  High effort questions are those that may require additional data or the certainty of the conclusions may require some level of professional judgment.  
 
@@ -171,9 +163,9 @@ knitr::include_graphics('../figures/coreex2.png')
 CSCI scores may be invalid if the sample was affected by natural or temporary disturbances.  The SWAMP sampling protocol indicates that sampling should occur during normal, baseflow conditions.  Sampling outside of these conditions, even during the normal index period from May to September, may result in depressed CSCI scores.  Field notes may indicate if abnormal conditions were present.  External datasets, such as flow records or time and location of fire events, may also provide clues of abnormal conditions. Types of disturbances could include: 
 
 1) Abnormal flow
-     1) high flow after a rain event that can scour a stream channel
-     1) high flow dam release or diversion
-     1) low flow under drought conditions
+     * high flow after a rain event that can scour a stream channel
+     * high flow dam release or diversion
+     * low flow under drought conditions
 1) Vector control operations at/upstream of a site or in the watershed
 1) In channel vegetation management or debris removal 
 1) Fire location and intensity
