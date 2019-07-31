@@ -80,39 +80,8 @@ knitr::include_graphics('../figures/validation_priority.png')
 ```
 
 A CSCI score or landscape model result can be invalidated by any question in the validation process.  A final conclusion is that one or both of the results are invalidated and that more data may be needed, which can include a site visit to collect information or to verify existing data.  Once new data are obtained or existing data are confirmed, the validation process is reinitiated.  The process occurs iteratively until both the CSCI score and landcape model result are sufficiently validated, i.e., the analyst has confidence the the results of both are sufficient for pursuing follow-up actions. If both are validated, the validation process is finished and additional actions can be pursued, which may included rapid causal analysis to determine why biological condition differs from the expectation. If it is not possible to validate the information with additional data, the analyst can also decide to proceed with follow-up actions regardless of the results.  In other words, the analyst may decide to trust the results based on their professional judgment, regardless of what the validation process provided.  
-
-## Data sources
-
-List of resources to assist with building the validation tool set - can go here or in appendix.
-
-### Metadata 
-
-* CSCI metadata (consult CSCI SOP and package documentation)
-* SCAPE website
-* Reference site information
-
-### Supporting data
-
-* GIS data
-  * StreamCat
-  * NHD hydrography
-  * Catchment/Watershed layers
-  * LU/LC data - NLCD 2006, 2011, NAIP aerial imagery
-  * GIS metrics for CSCI
-  * Google imagery + time slider
-* Field data
-  * SWAMP, SMC, CEDEN 
-* Local knowledge
-  * Field notes
-  * Site photos
-* Additional external datasets
-  * weather conditions (noaa.gov/weather)
-  * Fire perimeters
-  * Dredging (?)
-  * Mining (?)
-  * Timer harvest/silviculture (?)
     
-## CSCI
+## CSCI validation
 
 The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple phase 1 questions (e.g., examination of the metadata that are included with standard CSCI output) or phase 2 questions that may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the individual to determine when to stop considering additional questions.
 
@@ -133,7 +102,7 @@ knitr::include_graphics('../figures/coreex1.png')
 There are no strict guidelines from the SWAMP program for how many samples are required, although 100 is wholly insufficient.  An analysis of the effect of systematically reducing the sample count well below 600 individuals for several sites is shown below.  
 
 ```{r smpeff, fig.cap = "Effects of reducing sample size on CSCI scores."}
-knitr::include_graphics('../figures/summary_results.png')
+knitr::include_graphics('../figures/summary_results_effort.png')
 ```
 
 Figure \@ref(fig:smpeff) was created by taking subsamples of the total sample size for six different sites with a range of CSCI scores (horizontal dashed lines in Figure \@ref(fig:smpeff)a).  For each sample count, 100 subsamples were randomly selected from the total and CSCI scores were summarized by the average and coefficient of variation.  Overall, reducing the sample size caused reductions in the CSCI scores, with the reductions increasing more quickly with smaller sample sizes.  Figure \@ref(fig:smpeff)b shows the relative change as a proportion from the actual CSCI score.  The CSCI score is within ten percent of the actual score with sample counts of around 250 or more.  CSCI scores were reduced by greater than ten percent of the actual score with lower sample counts, the exception being site 801M16861. The variation of CSCI scores for each sample count also increases with lower sample counts (Figure \@ref(fig:smpeff)c), although variation did not exceed ten percent until very low sample sizes (e.g., 150 or less).  
@@ -157,6 +126,22 @@ The taxonomic identifications for macroinvertebrate samples used to calculate th
 ```{r fig.cap = "CSCI metadata that can be evaluated from the standard results.  The second sample returns an invalid CSCI score because of many ambiguous individuals and taxa (in red)."}
 knitr::include_graphics('../figures/coreex2.png')
 ```
+
+The effect of systematically increasing the amount of ambiguous taxa on CSCI scores is shown below.
+
+```{r smpamb, fig.cap = "Effects of introducing ambiguous taxa on CSCI scores."}
+knitr::include_graphics('../figures/summary_results_ambig.png')
+```
+
+Figure \@ref(fig:smpamb) was created by increasing the amount of ambiguous taxa that were included in each sample.  Ambiguous taxa were introduced by replacing individuals in the sample that had known identifications with the taxonomic Order.  By doing so, species were combined into larger groups at the Order level and discarded from the CSCI sample if the Order could not be resolved for any metric calculations.  An increasing number of ambiguity was evaluted ranging from 10% (right side of plots) to 90% ambiguous (left side of plots).  For each level of percent ambiguity (or percent taxa identified), 100 samples were evaluated where a different set of individuals were randomly selected to replace with the Order.  As before, the results in the plots represent the average CSCI score for the 100 random samples (Figures \@ref(fig:smpamb)a,b) and the coefficient of variation associated with the 100 random samples (Figures \@ref(fig:smpamb)c).
+
+The conclusions about the effects of increasing ambiguous taxa are similar to those made for the effect of reducing sample counts:
+
+* Incerasing ambiguity caused a decrease in CSCI scores from the true estimates
+
+* CSCI scores are generally within ten percent of the actual if the ambiguous taxa are less than 50-60% of the total sample
+
+* Precision decreases with more ambiguous taxa, although variation is typically less than 10% of the true mean if at least 30-40% of the sample contains unambiguous taxa.
 
 3) Was the sample affected by unusual sampling conditions? 
 
@@ -206,21 +191,7 @@ There are a few locations in California where the CSCI scores may be unreliable,
 
 Local site knowledge from field crews could provide information on abnormal locations where the biological expectations are naturally different from other streams in the region. In most cases, field crews will likely already be aware of locations where standard bioassessment methods produce odd or unexpected results compared to other locations.  Detailed geological maps may also provide clues regarding localized environmental differences that could influence the score.  
 
-Data to evaluate
-
-* Weather data
-* Fire perimeters
-* QA reports, CSCI metadata
-* Field notes
-* Upstream/downstream samples or nearby 
-* ASCI, PHAB, CRAM, water quality observations
-* Pictures
-* Reference sites
-* GIS data
-* watershed data
-* Degree of deviation from expectation
-
-## SCAPE
+## Landscape model validation
 
 ### Phase 1 questions
 
@@ -310,17 +281,36 @@ knitr::include_graphics(here("analysis/figures", "scapemec.jpeg"))
 
 Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classification change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objective changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points.  If the stream class does not change with different decision points, then the the stream class has high confidence.  However, if changing decision points dramatically changes the stream class and conclusions about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
 
-* Satellite imagery
-* Site photos
-* Alternative land use/land cover data (2006, 2011 NLCD)
-* PHAB data (metrics and field notes)
-* CRAM
-* Landscape stressors not characterized by StreamCat 
-* Google images
-* Site location relative to NHD segment
-* Catchment size
-* When is lu/lc change important?
-* Reference GIS data
+## Data sources
+
+The following is a list of resources that can provide information to address phase 1 and 2 validation questions. 
+
+### Phase 1 data
+
+* CSCI metadata (consult CSCI SOP and package documentation)
+* SCAPE website
+* Reference site information
+
+### Supporting data
+
+* GIS data
+  * StreamCat
+  * NHD hydrography
+  * Catchment/Watershed layers
+  * LU/LC data - NLCD 2006, 2011, NAIP aerial imagery
+  * GIS metrics for CSCI
+  * Google imagery + time slider
+* Field data
+  * SWAMP, SMC, CEDEN 
+* Local knowledge
+  * Field notes
+  * Site photos
+* Additional external datasets
+  * weather conditions (noaa.gov/weather)
+  * Fire perimeters
+  * Dredging data
+  * Mining data
+  * Timer harvest/silviculture data
 
 # High priority sites in SGR watershed
 
