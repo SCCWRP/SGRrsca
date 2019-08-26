@@ -3,7 +3,6 @@ title: "Decision framework for validating CSCI scores and landscape model classi
 author:
   - Marcus Beck
   - Raphael Mazor
-  - Scott Johnson
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: refs.bib
 output: 
@@ -41,11 +40,11 @@ devtools::load_all('.', quiet = T)
 
 # Background
 
-The California Stream Condition Index or CSCI is a robust tool for evaluating the biological integrity of streams in California using aquatic insect as indicators of stream health [@Mazor16].  The CSCI is used in routine assessments conducted by the Statewide Ambient Monitoring Program (SWAMP) and Southern California's Stormwater Monitoring Coalition regional monitoring program.  Collectively, these data represent one of the most comprehensive sources of information on biological condition of streams in the country.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
+The California Stream Condition Index or CSCI is a robust tool for evaluating the biological integrity of streams in California using aquatic insect as indicators of stream health [@Mazor16].  The CSCI is used in routine assessments conducted by the San Gabriel River (SGR) Regional Monitoring Program, a copperative non-governmental organization that manages aquatic resources in the watershed.  CSCI data collected by the SGR Regional Monitoring Program are the most comprehensive sources of information on biological condition of streams in the region.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
 
-In many places, managers lack the context for a biological condition assessment to determine the potential range of scores that are likely based on the environmental setting.  For example, managers may expect a mountain stream in an undeveloped setting to have greater biological potential than a stream in an urban setting.  Many stream reaches with low CSCI scores occur in developed urban and agricultural landscapes, where restoration can be costly and it may be difficult to achieve regional reference-like conditions.  In these situations, identifying a context for what CSCI scores are expected under current landscape conditions could be helpful for identifying where management actions are most likely to achieve intended outcomes, or where landscape alteration could limit success in achieving biological integrity.  Conversely, identifying locations where biological condition exceeds the expectation could be prioritized for conservation.  
+In many places, SGR managers lack the context for a biological condition assessment to determine the likelihood of a site for achieving biological integrity.  For example, managers may expect a mountain stream in the upper watershed to have greater biological potential than an urban stream in the lower watershed.  Many stream reaches with low CSCI scores occur in developed urban and agricultural landscapes, where restoration can be costly and it may be difficult to achieve regional reference-like conditions.  In these situations, identifying a context for what CSCI scores are expected under current landscape conditions could be helpful for identifying where management actions are most likely to achieve intended outcomes, or where landscape alteration could limit success in achieving biological integrity.  Conversely, identifying locations where biological condition exceeds the expectation could be prioritized for conservation.  
 
-The landscape model was developed to predict an expected range of CSCI scores relative to the level of landscape alteration that occurs in a watershed [@Beckir].  This model has been applied statewide to identify stream reaches that are constrained for achieving a potential biological objective for the CSCI.  Local managers are already using the landscape model with CSCI scores to prioritize sites for different management actions. For example, sites where observed scores are outside the predicted ranges from the landscape model could receive a high priority for follow-up actions, such as additional monitoring, casual assessment, or restoration. 
+The landscape model was developed to predict an expected range of CSCI scores relative to the level of landscape alteration that occurs in a watershed [@Beckir].  This model was applied to monitoring sites in the SGR  waterhsed to identify stream reaches that are constrained for achieving a potential biological objective for the CSCI.  Local managers are already using the landscape model with CSCI scores to prioritize sites for different management actions. For example, sites where observed scores are outside the predicted ranges from the landscape model could receive a high priority for follow-up actions, such as additional monitoring, casual assessment, or restoration. 
 
 Before additional actions are pursued at high priority sites, a reasonable level of confidence is needed in the sample used to estimate the CSCI and the stream classification from the landscape model.  Samples may not be reliable if standard sampling procedures are not followed or abnormal environmental events affect a sample, producing a CSCI score that does not represent baseline conditions. Similarly, landscape model results may not be reliable if the spatial data used to create the classification do not represent current conditions at a site.  A *validation process* is needed at high priority sites to verify the following:
 
@@ -53,9 +52,9 @@ Before additional actions are pursued at high priority sites, a reasonable level
 * Does the constraint class defined by the landscape model reflect the actual landscape context for these sites?
 * What data can we use and what questions can we ask to assess the validity of a bioassessment sample and stream class?
 
-This document provides a checklist of questions to evaluate when considering the validity of CSCI or landscape model results at high priority sites.  The validation process is organized hierarchically from low to high effort, starting with the simplest questions that are easy to answer and should be evaluated with any assessment.  High effort questions are those that may require additional data or the certainty of the conclusions may require some level of professional judgment.  
+This document provides a set of questions to consider when evaluating the validity of the CSCI or landscape model results at high priority sites. The validation process is organized hierarchically from low to high effort, starting with the simplest questions that are easy to answer and should be evaluated with any assessment.  High effort questions are those that may require additional data that may be more difficult to acquire, or the certainty of the conclusions may require some level of professional judgment.  
 
-Most importantly, this document is not a validation of the CSCI as an index, rather it is a validation of the quality of the sample used to estimate the CSCI score.  Likewise, the document is a validation of the data used to estimate the stream classification from the landscape model and not a validation of the latter as a method for defining biological constraints.  There are no policy recommendations herein for what makes a sample and/or score valid; validation should be part of normal QA/QC.  Lastly, the document does not provide specific recommendations on what management actions are pursued after validation occurs.
+Most importantly, this document is not a validation of the CSCI as an index or the SCAPE model; rather it is a validation of the usefulness of the sample used to estimate the CSCI score, or the SCAPE model outputs at the site in question. There are no policy recommendations herein for what makes a sample and/or score valid; validation should be part of normal QA/QC.  Lastly, the document does not provide specific recommendations on what management actions are pursued after validation occurs.
 
 # Validation
 
@@ -67,31 +66,21 @@ Validation is the process of confirming validity of a CSCI score and stream chan
 knitr::include_graphics('../figures/simp_temp.png')
 ```
 
-The conceptual framework for the validation process is shown in Figure \@ref(fig:valflo).  High priority sites are first identified by comparing CSCI scores to expectations from the landscape model. Validation can occur if a site is considered high priority, which may be a site that has a CSCI score that is not within the expected range.  If the site is otherwise low priority, then baseline monitoring and maintenance should be continued.  For high priority sites, the validation process is shown in the light grey box.  Separate but parallel validation processes occur for the CSCI score and landscape model classification.  In both processes, phase one questions should be addressed first, followed by phase 2 questions if validation is still required after phase 1.  Validation questions are described in phases as follows: 
+The conceptual framework for the validation process is shown in Figure \@ref(fig:valflo).  High priority sites are first identified by comparing CSCI scores to expectations from the landscape model. Validation can occur if a site is considered high priority, which may be a site that has a CSCI score that is not within the expected range.  If the site is otherwise low priority, then baseline monitoring and maintenance should be continued.  For high priority sites, the validation process is shown in the light grey box.  
 
-* Phase 1: Require minimal effort to answer and the certainty of the result is unambiguous.  Phase 1 data are easily accessible and typically include metadata or other supporting information that are usually included with a CSCI score or landscape model result.
-
-* Phase 2: Require moderate to high level of effort to answer and the certainty of the result may not be completely unambiguous.  Phase 2 data are external (e.g., not metadata) and require some effort to obtain for evaluation of the CSCI score and landscape model result.  The certainty of the result may be ambiguous such that a judgment call may be needed as to whether or not the conclusions about validity are final.  
-
-The phase 1 and 2 questions can also be described using the classification matrix in Figure \@ref(fig:phasex). Phase 1 questions are high priority (dark green box) because they are low effort to answer and confidence in the results is high regarding the validation conclusion.  Conversely, phase 2 question are medium to low priority because 1) confidence in the validation conclusion is low, 2) there is a high level of effort associated with answering the question, or 3) both the confidence is low and the effort is high.
-
-```{r phasex, fig.cap="Determing piority of validation questions based on difficulty and confidence in the result.", fig.height=1}
-knitr::include_graphics('../figures/validation_priority.png')
-```
+Separate but parallel validation processes occur for the CSCI score and landscape model classification. In both validation processes, questions vary in the level of difficulty to answer regarding validity of the CSCI sample or SCAPE ouput.  Difficulty can very either because the data to address the question may or may not be readily available or the certainty of the conclusion can vary because of incomlete knowledge about how much the issue affects the outcome. Questions are generally organized in the section below from simple/easy to answer vs more difficult questions that may require some level of professional judgement. 
 
 A CSCI score or landscape model classification can be invalidated at any step in the validation process.  A final conclusion is that one or both of the results are invalidated and that more data may be needed, which can include a site visit to collect information or to verify existing data.  Once new data are obtained or existing data are confirmed, the validation process is reinitiated.  The process occurs iteratively until both the CSCI score and landscape model result are sufficiently validated, i.e., the analyst has confidence the results of both are sufficient for pursuing follow-up actions. If both are validated, the validation process is finished and additional actions can be pursued, which may include rapid causal analysis to determine why biological condition differs from the expectation. If it is not possible to validate the information with additional data, the analyst can also decide to proceed with follow-up actions regardless of the results.  In other words, the analyst may decide to trust the results based on their professional judgment, regardless of what the validation process provided.  
     
 ## CSCI validation
 
-The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  These questions correspond to the left track of the validation box in Figure \@ref(fig:valflo). For each question, a description of the issue is provided, how might the issue affect the score, and what data are needed to answer the question.  The questions are also described as simple phase 1 questions (e.g., examination of the metadata that are included with standard CSCI output) or phase 2 questions that may require additional data (e.g., site visits) or analyses to fully evaluate. A CSCI score could be invalidated for one to any of the questions and it is up to the analyst to determine when to stop considering additional questions.
+The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  These questions correspond to the left track of the validation box in Figure \@ref(fig:valflo). For each question, a description is provided for why the the question or issue is a problem, followed by a description of what data do you need or where to you look to determine if the problem is important for your sample.  A CSCI score could be invalidated for one to any of the questions and it is up to the analyst to determine when to stop considering additional questions.
 
-### Phase 1 questions 
-
-The phase 1 questions are high priority, meaning they can be answered with minimal effort (e.g, by consulting the CSCI metadata) and the outcome has high certainty (e.g., a CSCI score will almost always be invalid if the results do not satisfy the question).
+### Questions 
 
 1) Is the sample count sufficient? 
   
-Low sample counts may not provide a complete picture of the community that was present during sampling.  Macroinvertebrates data used to calculate the CSCI are based on a representative subsample of 600 individuals from the total sample for each site.  In general, sites where CSCI scores are based on substantially less than 600 individuals may be suspect.  
+Low sample counts may not provide a complete picture of the community that was present during sampling.  Macroinvertebrate data used to calculate the CSCI are based on a representative subsample of 600 individuals from the total sample for each site.  In general, sites where CSCI scores are based on substantially less than 600 individuals may be suspect.  
 
 The index output that is generated by the CSCI calculator (<https://sccwrp.github.io/CSCI>) provides information that can be used to evaluate the sample count.  Specifically the "core" output contains a column for each CSCI sample for the sample count.  In the first row, we see that the first sample was based on only 100 organisms.  Therefore, we can assume that CSCI scores from the first sample are likely invalid.
    
@@ -157,15 +146,11 @@ CSCI scores may be invalid if the sample was affected by natural or temporary di
 
 It is also important to note that the CSCI is sensitive to stressors that may be caused by unusual events and that the score is valid in these instances, although it is not representative of "normal" conditions.  Whether or not a CSCI score is valid after a temporary disturbance depends on the objective of the sampling.  If the sampling is meant to capture the effects of these events, then the score is more than likely valid.  However, if the objective is to evaluate "normal", long-term conditions at a site, then the score may not represent these baseline conditions.  In the latter case, field crews may or may not be aware of temporary events that can depress CSCI scores.  If there is reason to question a score based on an unusual sampling condition, external data must be consulted. Field notes may be the best source of information.
 
-### Phase 2 questions    
-
-Phase two questions are more difficult to address because they require additional, external datasets and/or there is no clear answer for what determines the validity of a CSCI score for the question.  In these cases, the analyst must determine for themselves what is sufficient evidence to invalidate a CSCI score.
-
-1) Was the sample outside of the typical index period?
+4) Was the sample outside of the typical index period?
 
 The SOP guidelines for field sampling of macroinvertebrates [@Ode16b] states the typical index period as being from __May__ through __September__ to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated.  Sample dates can be verified from the raw data used to calculate the CSCI.  However, ad hoc information has suggested that CSCI scores are relatively invariant to seasonal changes, so this question is given a lower priority for validation. 
 
-2) Does the site have a bad watershed delineation?
+5) Does the site have a bad watershed delineation?
 
 The CSCI requires data describing landscape characteristics of the watershed for a site.  These data are used to develop a prediction of the macroinvertebrate community that could be expected at the site under reference conditions.  A watershed delineation is required for a site to obtain these landscape data for the CSCI predictions. The CSCI interim instructions [@Mazor18b] describe in detail how these delineations can be created.  In short, a digital elevation model is used with the site's longitude/latitude to identify the area of land where all elevations are increasing and higher than the starting elevation of the site.  This watershed is then used to calculate landscape-level data needed for the CSCI, such as the total elevation range, average precipitation, and various soil characteristics.  An inaccurate representation of the watershed can produce inaccurate estimates of the landscape data used to calculate the CSCI.
 
@@ -184,7 +169,7 @@ The original GIS file for the watershed delineation should be viewed to assess t
 knitr::include_graphics(here('analysis/figures', 'delinex.png'))
 ```
 
-3) Are there unusual settings where the CSCI is known to give low scores?
+6) Are there unusual settings where the CSCI is known to give low scores?
 
 There are a few locations in California where the CSCI scores may be unreliable, although they are not formally documented nor well understood.  In these locations, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]).  This can influence the physical and chemical characteristics of the stream that structure the diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
 
@@ -194,9 +179,7 @@ Local site knowledge from field crews could provide information on abnormal loca
 
 The landscape model validation questions correspond to the right track of the grey validation box in Figure \@ref(fig:valflo).
 
-### Phase 1 questions
-
-The phase 1 questions are high priority, meaning they can be answered with minimal effort (e.g, by consulting the readily available data) and the outcome has high certainty (e.g., a landscape model score will almost always be invalid if the results do not satisfy the question).
+### Questions
 
 1) Is the sampling reach atypical of a channel's overall class (e.g., unconstrained class surrounded by constrained classes)?
 
@@ -210,11 +193,7 @@ knitr::include_graphics(here("analysis/figures", "scapex.png"))
 
 For locations not in the San Gabriel watershed, a [shapefile](https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f) is available for all stream reaches in California where the landscape model was applied.   
 
-### Phase 2 questions
-
-Phase two questions are more difficult to address because they may require additional, external datasets and/or there is no clear answer for what determines the validity of a landscape model classification for the question.  In these cases, the analyst must determine for themselves what is sufficient evidence to invalidate a classification.
-
-1) Has land cover recently changed?
+2) Has land cover recently changed?
 
 The landscape model provides an expectation of biological condition based on the landscape characteristics of the watershed upstream of a site.  The landscape characteristics are based on national-level, geospatial data products that characterize the relative extent human development in the watershed.  Specifically, the landscape model is based on StreamCat data [@Hill16] that provide estimates of canal/ditch density, imperviousness, road density/crossings, and urban/agricultural land use for each site.  Within StreamCat, many of these estimates were derived from primary data products, such as the National Land Cover Database for 2006 and 2011 (Table \@ref(tab:crvr)).  Because some of the primary products relate to a specific year, the associated constraint classes from the landscape model may not accurately reflect current constraints.  
 
@@ -255,13 +234,13 @@ The Google Earth (<https://www.google.com/earth/>) time slider provides a useful
 knitr::include_graphics(here('analysis/figures', 'luchng.png'))
 ```
 
-2) Are there constraints not captured by the landscape model that are affecting biology at the site?
+3) Are there constraints not captured by the landscape model that are affecting biology at the site?
 
-As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the phase 2 CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.  Field notes or external datasets could be consulted to determine if the site classification is warranted.
+As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.  Field notes or external datasets could be consulted to determine if the site classification is warranted.
 
 A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts might not be explicitly included in the landscape model and should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
 
-3) Do the spatial data for the stream channel match the actual location on the landscape? 
+4) Do the spatial data for the stream channel match the actual location on the landscape? 
 
 The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location if 1) the stream is in a landscape with altered hydrology, or 2) the stream channel has migrated over time due to normal hydro-geomorphic processes.  Figure \@ref(fig:hydroex) shows an example of where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
 
@@ -269,7 +248,7 @@ The landscape model assigns a constraint classification to every NHD-Plus stream
 knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 ```
 
-4) Are the results from the landscape model close to key decision points?
+5) Are the results from the landscape model close to key decision points?
 
 As with many decision support tools, the constraint classifications derived from the landscape model are categories that are based on binning continuous data.  This approach allows complex information to be distilled for communication in a more digestible format.  This improvement in communication comes at the expense of specificity - binning results reduces the type of information that can be obtained.  As an example, the landscape model would classify a stream reach as possibly constrained if the median score is 1/100 of a decimal place below the biological objective, whereas increasing that score by 0.02 points would cause the landscape model to classify the reach as possibly unconstrained.  Because of this, an analyst should be aware of how the constraint classes are determined and if the results for a site are close to decision points.  
 
@@ -283,16 +262,11 @@ Sites where the 10th, median, or 90th percentile of the score expectations are n
 
 ## Data sources
 
-The following is a list of resources that can provide information to address phase 1 and 2 validation questions. 
-
-### Phase 1 data
+The following is a list of resources that can provide information to address the validation questions. 
 
 * CSCI metadata (consult CSCI SOP and package documentation)
 * SCAPE website
 * Reference site information
-
-### Phase 2 data
-
 * GIS data
   * StreamCat
   * NHD hydrography
