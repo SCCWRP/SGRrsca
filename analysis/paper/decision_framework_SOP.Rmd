@@ -108,7 +108,7 @@ Based on the above analyses, we recommend a minimum sample size of 250 for a val
 
 Ambiguous individuals or taxa cannot be used for O/E calculations in the CSCI, and may distort calculations of some metrics. This might occur if, for example, a sample isn’t identified to the CSCI’s standard level of taxonomic effort (SAFIT1a), or if the sample is dominated by immature or hard-to-identify taxa (e.g., early instar stoneflies) . In these cases, a lower sample count of unambiguous individuals is used to calculate CSCI scores, which may not reflect true site condition.
 
-Although the effect of ambiguous individuals or taxa on the CSCI may be similar to the effects of low sample count, the underlying reason for depressed CSCI scores is different. In the former case, taxa used to calcuate the CSCI sample lack specificity and certain traits that are diagnostic for specific metrics may be impossible to quantify.  Even if the sample is truly diverse and has a sufficiently high sample count, designations at higher taxonomic levels may not provide enough detail to fully characterize biological condition. 
+Although the effect of ambiguous individuals or taxa on the CSCI may be similar to the effects of low sample count, the underlying reason for depressed CSCI scores is different. In the former case, taxa used to calculate the CSCI sample lack specificity and certain traits that are diagnostic for specific metrics may be impossible to quantify.  Even if the sample is truly diverse and has a sufficiently high sample count, designations at higher taxonomic levels may not provide enough detail to fully characterize biological condition. 
 
 *Where do you find an answer?*
 
@@ -175,9 +175,7 @@ Local site knowledge from field crews could provide information on abnormal loca
 
 The landscape model validation questions correspond to the right track of the grey validation box in Figure \@ref(fig:valflo).
 
-### Questions
-
-1) Is the sampling reach atypical of a channel's overall class (e.g., unconstrained class surrounded by constrained classes)?
+### Is the sampling reach atypical of a channel's overall class (e.g., unconstrained class surrounded by constrained classes)?
 
 The landscape model assigns a constraint class to digitized reaches in the NHD-Plus stream hydrography layer.  A reach can be described as one of four classes: likely constrained, possibly constrained, possibly unconstrained, likely unconstrained.  Typically, stream reaches of the same class co-occur in space such that it is more likely that a constrained reach is surrounded by other constrained reaches and an unconstrained reach is surrounded by other unconstrained reaches. Occasionally, a stream segment will have a constraint class that differs or is otherwise unexpected based on the classes for reaches nearby.  For example, an unconstrained reach may be found in an urban setting where reaches upstream and downstream are constrained.  This could reflect a real phenomenon or could be an artifact of the data.  In these cases, the constraint class should be investigated. 
 
@@ -189,7 +187,7 @@ knitr::include_graphics(here("analysis/figures", "scapex.png"))
 
 For locations not in the San Gabriel watershed, a [shapefile](https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f) is available for all stream reaches in California where the landscape model was applied.   
 
-2) Has land cover recently changed?
+### Has land cover recently changed?
 
 The landscape model provides an expectation of biological condition based on the landscape characteristics of the watershed upstream of a site.  The landscape characteristics are based on national-level, geospatial data products that characterize the relative extent human development in the watershed.  Specifically, the landscape model is based on StreamCat data [@Hill16] that provide estimates of canal/ditch density, imperviousness, road density/crossings, and urban/agricultural land use for each site.  Within StreamCat, many of these estimates were derived from primary data products, such as the National Land Cover Database for 2006 and 2011 (Table \@ref(tab:crvr)).  Because some of the primary products relate to a specific year, the associated constraint classes from the landscape model may not accurately reflect current constraints.  
 
@@ -230,13 +228,13 @@ The Google Earth (<https://www.google.com/earth/>) time slider provides a useful
 knitr::include_graphics(here('analysis/figures', 'luchng.png'))
 ```
 
-3) Are there constraints not captured by the landscape model that are affecting biology at the site?
+### Are there constraints not captured by the landscape model that are affecting biology at the site?
 
 As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.  Field notes or external datasets could be consulted to determine if the site classification is warranted.
 
 A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts might not be explicitly included in the landscape model and should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
 
-4) Do the spatial data for the stream channel match the actual location on the landscape? 
+### Do the spatial data for the stream channel match the actual location on the landscape? 
 
 The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location if 1) the stream is in a landscape with altered hydrology, or 2) the stream channel has migrated over time due to normal hydro-geomorphic processes.  Figure \@ref(fig:hydroex) shows an example of where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
 
@@ -244,7 +242,7 @@ The landscape model assigns a constraint classification to every NHD-Plus stream
 knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 ```
 
-5) Are the results from the landscape model close to key decision points?
+### Are the results from the landscape model close to key decision points?
 
 As with many decision support tools, the constraint classifications derived from the landscape model are categories that are based on binning continuous data.  This approach allows complex information to be distilled for communication in a more digestible format.  This improvement in communication comes at the expense of specificity - binning results reduces the type of information that can be obtained.  As an example, the landscape model would classify a stream reach as possibly constrained if the median score is 1/100 of a decimal place below the biological objective, whereas increasing that score by 0.02 points would cause the landscape model to classify the reach as possibly unconstrained.  Because of this, an analyst should be aware of how the constraint classes are determined and if the results for a site are close to decision points.  
 
