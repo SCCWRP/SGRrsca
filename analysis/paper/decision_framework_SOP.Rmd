@@ -40,13 +40,11 @@ devtools::load_all('.', quiet = T)
 
 # Background
 
-The California Stream Condition Index or CSCI is a robust tool for evaluating the biological integrity of streams in California using aquatic insect as indicators of stream health [@Mazor16].  The CSCI is used in routine assessments conducted by the San Gabriel River (SGR) Regional Monitoring Program, a copperative non-governmental organization that manages aquatic resources in the watershed.  CSCI data collected by the SGR Regional Monitoring Program are the most comprehensive sources of information on biological condition of streams in the region.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
+The California Stream Condition Index or CSCI is a tool for evaluating the biological integrity of wadeable streams in California using aquatic insect as indicators of stream health and is applicable to most of the diverse conditions found in the state [@Mazor16].  The CSCI is used in routine assessments conducted by the San Gabriel River (SGR) Regional Monitoring Program, a copperative non-governmental organization that manages aquatic resources in the watershed.  CSCI data collected by the SGR Regional Monitoring Program are the most comprehensive sources of information on biological condition of streams in the region.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
 
-In many places, SGR managers lack the context for a biological condition assessment to determine the likelihood of a site for achieving biological integrity.  For example, managers may expect a mountain stream in the upper watershed to have greater biological potential than an urban stream in the lower watershed.  Many stream reaches with low CSCI scores occur in developed urban and agricultural landscapes, where restoration can be costly and it may be difficult to achieve regional reference-like conditions.  In these situations, identifying a context for what CSCI scores are expected under current landscape conditions could be helpful for identifying where management actions are most likely to achieve intended outcomes, or where landscape alteration could limit success in achieving biological integrity.  Conversely, identifying locations where biological condition exceeds the expectation could be prioritized for conservation.  
+Although the CSCI provides information about the condition of a stream, managers may also want to know what conditions are expected in a stream, given its landscape context. For example, urbanized watersheds may be expected to support low CSCI scores, whereas an undeveloped watershed may support higher scores. Sites that score higher or lower than expected are often a priority for follow-up management actions, such as enhanced investigations, or causal assessment that could lead to restoration. A landscape model that predicts ranges of likely CSCI scores has been developed and applied to most streams in California, including the SGR watershed. 
 
-The landscape model was developed to predict an expected range of CSCI scores relative to the level of landscape alteration that occurs in a watershed [@Beckir].  This model was applied to monitoring sites in the SGR  waterhsed to identify stream reaches that are constrained for achieving a potential biological objective for the CSCI.  Local managers are already using the landscape model with CSCI scores to prioritize sites for different management actions. For example, sites where observed scores are outside the predicted ranges from the landscape model could receive a high priority for follow-up actions, such as additional monitoring, casual assessment, or restoration. 
-
-Before additional actions are pursued at high priority sites, a reasonable level of confidence is needed in the sample used to estimate the CSCI and the stream classification from the landscape model.  Samples may not be reliable if standard sampling procedures are not followed or abnormal environmental events affect a sample, producing a CSCI score that does not represent baseline conditions. Similarly, landscape model results may not be reliable if the spatial data used to create the classification do not represent current conditions at a site.  A *validation process* is needed at high priority sites to verify the following:
+The landscape model was developed to predict an expected range of CSCI scores relative to the level of landscape alteration that occurs in a watershed [@Beck19b].  Local managers are already using the landscape model with CSCI scores to prioritize sites for different management actions. For example, sites where observed scores are outside the predicted ranges from the landscape model could receive a high priority for follow-up actions, such as additional monitoring, casual assessment, or restoration. However, before actions are pursued at high priority sites, a certain level of confidence is needed in the sample used to estimate the CSCI, as well as in the classification derived from the landscape model.  Samples may not be reliable if standard sampling procedures are not followed or abnormal environmental events affect a sample, producing a CSCI score that does not represent baseline conditions. Similarly, landscape model results may not be reliable if the spatial data used to create the classification do not correctly represent conditions at a site.  A *validation process* is needed at high priority sites to verify the following:
 
 * Is the biological sample used to calculate the CSCI reliable and within the standard protocol for estimating a site score?
 * Does the constraint class defined by the landscape model reflect the actual landscape context for these sites?
@@ -60,9 +58,17 @@ Most importantly, this document is not a validation of the CSCI as an index or t
 
 ## Workflow description
 
+In this document, "validation" refers to one of two process:
+
+* Determining if a CSCI score from a sample is likely to correctly represent the conditions at a site at the time of sampling.
+
+* Determining if outputs from the landscape model are likely to correctly represent conditions at the site under present-day conditions.
+
+This document describes a few activities that do not fall under the validation processes described above, but may still be good standard practices to follow when making decisions from CSCI data or the landscape model. For example, the document describes a process to determine if wildfire may have influenced CSCI scores; evidence of the influence of wildfire does not invalidate a bioassessment, yet it should be evaluated when considering the likely causes of low CSCI scores.
+
 Validation is the process of confirming validity of a CSCI score and stream channel classification from the landscape model.  A "valid" CSCI score or classification is determined from professional judgment after reviewing appropriate data as being a sufficient description of the biological condition or constraint class, respectively, within the limits of the methods used to estimate each component. Validation is also within the larger framework of comparing CSCI scores to results form the landscape model to develop priorities, such that high priority sites identified through this process should undergo validation prior to follow-up actions.  The validation process ends with a determination on whether or not the CSCI score and/or landscape model classification are sufficiently accurate to warrant follow-up management actions. 
 
-```{r valflo, fig.cap="A simplified framework for validating CSCI and landscape model (LSM) information.", fig.height=3}
+```{r valflo, fig.cap="A framework for validating CSCI and landscape model (LSM) information.", fig.height=3}
 knitr::include_graphics('../figures/simp_temp.png')
 ```
 
@@ -72,75 +78,126 @@ Separate but parallel validation processes occur for the CSCI score and landscap
 
 A CSCI score or landscape model classification can be invalidated at any step in the validation process.  A final conclusion is that one or both of the results are invalidated and that more data may be needed, which can include a site visit to collect information or to verify existing data.  Once new data are obtained or existing data are confirmed, the validation process is reinitiated.  The process occurs iteratively until both the CSCI score and landscape model result are sufficiently validated, i.e., the analyst has confidence the results of both are sufficient for pursuing follow-up actions. If both are validated, the validation process is finished and additional actions can be pursued, which may include rapid causal analysis to determine why biological condition differs from the expectation. If it is not possible to validate the information with additional data, the analyst can also decide to proceed with follow-up actions regardless of the results.  In other words, the analyst may decide to trust the results based on their professional judgment, regardless of what the validation process provided.  
 
-It is also important to note that the CSCI is sensitive to stressors that may be caused by unusual events and that the score is valid in these instances, although it is not representative of "normal" conditions.  Whether or not a CSCI score is valid after a temporary disturbance depends on the objective of the sampling.  If the sampling is meant to capture the effects of these events, then the score is more than likely valid.  However, if the objective is to evaluate "normal", long-term conditions at a site, then the score may not represent these baseline conditions.  In the latter case, field crews may or may not be aware of temporary events that can depress CSCI scores.  If there is reason to question a score based on an unusual sampling condition, external data must be consulted. Field notes may be the best source of information.    
+It is also important to note that the CSCI is sensitive to stressors that may be caused by unusual events and that the score is valid in these instances, although it is not representative of "normal" conditions.  Whether or not a CSCI score is valid after a temporary disturbance depends on the purpose of the sampling.  If the sampling is meant to capture the effects of these events, then the score is more than likely valid.  However, if the objective is to evaluate "normal", long-term conditions at a site, then the score may not represent these baseline conditions.  In the latter case, field crews may or may not be aware of temporary events that can depress CSCI scores.  If there is reason to question a score based on an unusual sampling condition, external data must be consulted. Field notes may be the best source of information.    
 
 ## CSCI validation
 
 The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  These questions correspond to the left track of the validation box in Figure \@ref(fig:valflo). For each question, a description is provided for why the the question or issue is a problem, followed by a description of what data do you need or where to you look to determine if the problem applies to your sample.  A CSCI score could be invalidated for one to any of the questions and it is up to the analyst to determine when to stop considering additional questions.
 
-### Is the sample count sufficient? 
+### Number of organisms in a sample (i.e., sample count)
 
 *Why is this a problem?* 
 
-Low sample counts may not provide a complete picture of the community that was present during sampling. Sample counts could be low for several reasons, including but not limited to sampling failure (e.g., loss of insects from net failure), poor timing of sampling (e.g., outside of index period), or sampling protocols from the field manuals were not followed.  Macroinvertebrate data used to calculate the CSCI are based on a representative subsample of 600 individuals from the total sample for each site.  In general, sites where CSCI scores are based on substantially less than 600 individuals may be suspect.  
+The CSCI was calibrated with samples containing exactly 600 organisms. Smaller counts may yield inaccurate (and likely lower) CSCI scores because smaller samples may not provide a complete picture of the community that was present during sampling. Sample counts could be low for several reasons, including but not limited to sampling failure (e.g., loss of insects from net failure), poor timing of sampling (e.g., outside of index period), or sampling protocols from the field manuals were not followed. 
 
 *Where do you find an answer?*
 
-The index output that is generated by the CSCI calculator (<https://sccwrp.github.io/CSCI>) provides information that can be used to evaluate the sample count.  Specifically the "core" output contains a column for each CSCI sample for the sample count.  In the first row, we see that the first sample was based on only 100 organisms.  Therefore, we can assume that CSCI scores from the first sample are likely invalid.
+The report that is generated by the CSCI calculator (<https://sccwrp.github.io/CSCI>) includes a "Count" column which indicates the number of organisms present in the original sample (Figure \@ref(fig:coreex)).
    
-```{r fig.cap = "CSCI metadata that can be evaluated from the standard results.  The first sample returns an invalid CSCI score because of a low sample count (in red)."}
+```{r coreex, fig.cap = 'The CSCI core report includes metadata that can be used to evaluate the validity of a sample.  The total number of organisms is indicated in the "Count" column, highlighted in red.'}
 knitr::include_graphics('../figures/coreex1.png')
 ```
 
-The SWAMP program does not provide guidance on how many samples are required.  However, an analysis of the effect of systematically reducing the sample count well below 600 individuals for several sites is provided in the appendix.  Figure \@ref(fig:smpeff) was created by taking subsamples of the total sample size for six different sites with a range of CSCI scores (horizontal dashed lines in Figure \@ref(fig:smpeff)a).  For each sample count, 100 subsamples were randomly selected from the total and CSCI scores were summarized by the average and coefficient of variation.  Overall, reducing the sample size caused reductions in the CSCI scores, with the reductions increasing more quickly with smaller sample sizes.  Figure \@ref(fig:smpeff)b shows the relative change as a proportion from the actual CSCI score.  The CSCI score is within ten percent of the actual score with sample counts of around 250 or more.  CSCI scores were reduced by greater than ten percent of the actual score with lower sample counts, the exception being a site with very low diversity. The variation of CSCI scores for each sample count also increases with lower sample counts (Figure \@ref(fig:smpeff)c), although variation did not exceed ten percent until very low sample sizes (e.g., 150 or less).  
+*How do you evaluate the answer?* 
 
-Based on the above analyses, we recommend a minimum sample size of 250 for a valid sample. Detailed recommendations are as follows:
+We recommend a minimum of __250__ organisms in a sample for CSCI scores to be considered valid (Figure \@ref(fig:sumeffind)).
 
-* CSCI scores are generally within ten percent of the actual with sample counts of 250 or more
+```{r sumeffind, fig.cap = "Effects of systemetically reducing sample count on CSCI scores for six sites.  The dashed lines indicates the true CSCI score at each site and the vertical black line indicates a minimum sample size of 250."}
+knitr::include_graphics('../figures/summary_results_effort_ind.png')
+```
 
-* Changes in CSCI score with lower samples are similar for high or low quality sites, however; 
+This recommendation is based on simulation analyses presented in the appendix, where sample counts were reduced at random, and scores were compared to the original (true) score based on the full 600-count sample. As long as counts were above 250, the estimated score was typically within 10% of the true score, with relatively little variation across simulations. In general, low count samples had biased, low-scoring CSCI scores (although biased high-scoring samples were also observed in some iterations). Sites with low richness and high evenness were more robust to small counts than were more diverse samples. Additionally, low-scoring samples tend to be more robust than high-scoring samples.
 
-* Sites with very low scores and very low richness are minimally affected by changes in sample counts.
+If a sample count is low, it is best to collect or seek out additional samples from the site. If higher-count samples are available, the lower-count sample should be disregarded, as it likely reflects transient conditions or sampling error. That is, the low number of organisms __invalidates__ the CSCI score in these circumstances.  However, if repeated sampling consistently yields low-count samples, this pattern may indicate severe, long-term disturbance (e.g., repeated drying and scouring of flood-control channels) or natural conditions (e.g., certain bedrock-dominated streams) that are intrinsically depauperate in benthic macroinvertebrates. Further investigation of the site will determine whether the consistently low counts are due to natural or anthropogenic factors. If the low counts are unambiguously attributable to natural circumstances, the low count invalidates the CSCI score; otherwise, the CSCI scores are likely __valid__.
 
-* Precision decreases with lower sample size, although variation is typically less than 10% of the true mean with sample sizes of 200 or more.
-
-### Are there many ambiguous individuals or taxa? 
+### Proportion of ambiguous individuals or taxa in a sample 
 
 *Why is this a problem?* 
 
-Ambiguous individuals or taxa cannot be used for O/E calculations in the CSCI, and may distort calculations of some metrics. This might occur if, for example, a sample isn’t identified to the CSCI’s standard level of taxonomic effort (SAFIT1a), or if the sample is dominated by immature or hard-to-identify taxa (e.g., early instar stoneflies) . In these cases, a lower sample count of unambiguous individuals is used to calculate CSCI scores, which may not reflect true site condition.
+Ambiguous individuals or taxa cannot be used to calculate the O/E component of the CSCI, and may distort calculations of some metrics in the MMI component, likely leading to an underestimate of the CSCI score. Ambiguous taxa may be found in low numbers in any bioassessment sample, but they can create a problem when they comprise a large portion of the organisms in a sample. High proportions of ambiguous taxa may occur if a sample isn’t identified to the CSCI’s standard level of taxonomic effort (SAFIT1a), or if the sample is dominated by immature or hard-to-identify taxa (e.g., early instar stoneflies).
 
-Although the effect of ambiguous individuals or taxa on the CSCI may be similar to the effects of low sample count, the underlying reason for depressed CSCI scores is different. In the former case, taxa used to calculate the CSCI sample lack specificity and certain traits that are diagnostic for specific metrics may be impossible to quantify.  Even if the sample is truly diverse and has a sufficiently high sample count, designations at higher taxonomic levels may not provide enough detail to fully characterize biological condition. 
+Ambiguous taxa are excluded from calculating many components of the CSCI, leading to inaccurate scores for the same reasons as described above (under "Number of organisms in a sample""). Additionally, ambiguous taxa often lack trait information used to calculate certain metrics (e.g., tolerance value, functional feeding group). If all the ambiguous taxa belong to a certain group (e.g., stoneflies), excluding them from metric calculation will mischaracterize the composition of the sample. Therefore, the presence of a high proportion of ambiguous taxa should be considered a separate problem from low counts in a sample.
 
 *Where do you find an answer?*
 
-The taxonomic identifications for macroinvertebrate samples used to calculate the CSCI are compared against SAFIT's standard taxonomic effort (available at [https://safit.org/ste.html](https://safit.org/ste.html)).  The CSCI output returns information on the percentage of a sample that does not conform to the SAFIT taxonomy, both as the percentage of **individuals** from the total count that are ambiguous and the percentage of **taxa** that are ambiguous.  Although no maximum number has been established by SWAMP, samples with high percentages of ambiguous taxa may have invalid CSCI scores. Figure \ref(fig:coreex2) shows output from the CSCI calculate that reports the percentage of ambiguous individuals and taxa.  The second sample for site 3 has many ambiguous observations.
+The taxonomic identifications for macroinvertebrate samples used to calculate the CSCI are compared against SAFIT's standard taxonomic effort (available at [https://safit.org/ste.html](https://safit.org/ste.html)).  The CSCI output returns information on the percentage of a sample that does not conform to the SAFIT taxonomy, both as the percentage of individuals from the total count that are ambiguous and the percentage of taxa that are ambiguous.  Although no maximum number has been established by SWAMP, samples with high percentages of ambiguous taxa may have invalid CSCI scores. Figure \@ref(fig:coreex2) shows output from the CSCI calculate that reports the percentage of ambiguous individuals and taxa.  The second sample for site 3 has many ambiguous observations.
 
 ```{r coreex2, fig.cap = "CSCI metadata that can be evaluated from the standard results.  The second sample returns an invalid CSCI score because of many ambiguous individuals and taxa (in red)."}
 knitr::include_graphics('../figures/coreex2.png')
 ```
 
-The effect of systematically increasing the amount of ambiguous taxa on CSCI scores is shown in the appendix.  Figure \@ref(fig:smpamb) was created by increasing the amount of ambiguous taxa that were included in each sample.  Ambiguous taxa were introduced by replacing individuals in the sample that had known identifications with the taxonomic Order.  By doing so, species were combined into larger groups at the Order level and discarded from the CSCI sample if the Order could not be resolved for any metric calculations.  An increasing number of ambiguity was evaluated ranging from 10% (right side of plots) to 90% ambiguous (left side of plots).  For each level of percent ambiguity (or percent taxa identified), 100 samples were evaluated where a different set of individuals were randomly selected to replace with the Order.  As before, the results in the plots represent the average CSCI score for the 100 random samples (Figures \@ref(fig:smpamb)a,b) and the coefficient of variation associated with the 100 random samples (Figures \@ref(fig:smpamb)c).
+There are several possible causes for a high proportion of ambiguous taxa in a sample:
 
-Based on the above analyses, we recommend a maximum percentage of ambiguous taxa not to exceed  40-50% (i.e., percent of identified taxa not to fall below 50-60%).  Details include:
+* Samples were collected very early, well before the normal index period (which for southern California is May 15 to July 15). Samples collected mid-winter (e.g., December to February) tend to have many early-instar taxa, which are difficult to identify to the desired levels.
 
-* Increasing ambiguity caused a decrease in CSCI scores from the true estimates
+* The sample was poorly preserved, and specimens were in poor condition. Notes from the taxonomy lab should indicate if this was the case. Field crews should be notified so that they can improve sample preservation practices.
 
-* CSCI scores are generally within ten percent of the actual if the ambiguous taxa are less than 50-60% of the total sample
+* The taxonomy lab did not apply a level of effort (i.e., SAFIT 1a or 2) required for CSCI calculation. Work orders and chains-of-custody should indicate the level of effort the lab strove for.
 
-* Precision decreases with more ambiguous taxa, although variation is typically less than 10% of the true mean if at least 30-40% of the sample contains unambiguous taxa.
+Regardless of the cause of ambiguous taxa, it is better to evaluate the overall severity of the problem before deciding that a sample should be used for CSCI calculation.
 
-### Was the sample affected by abnormal flow?
+*How do you evaluate the answer?*
+
+We recommend a maximum of __50% ambiguous taxa or individuals__ in a sample for CSCI scores to be considered valid. Higher proportions invalidate a sample (Figure \@ref(fig:sumambind)).
+
+```{r sumambind, fig.cap = "Effects of systemetically increasing the proportion of ambiguous taxa in a sample on CSCI scores for six sites.  The dashed lines indicate the true CSCI score at each site and the vertical black line indicates a recommended maximum of 50% ambiguous taxa."}
+knitr::include_graphics('../figures/summary_results_ambig_ind.png')
+```
+
+This recommendation is based on simulation analyses presented in the appendix, where ambiguous identifications were introduced in to sample at random, and scores were compared to the original (true) score based on the original sample. As long as the proportion of ambiguous taxa or individuals were above below 50%, the estimated score was typically within 10% of the true score, with relatively little variation across simulations. 
+
+*What can you do if your sample has a high proportion of ambiguous taxa?*
+
+If ambiguous taxa are largely midges (the typical scenario when the taxonomy lab used SAFIT Level 1 as a standardized taxonomic effort level), rescore the sample using the `MissingMidges()` function in the CSCI package. This function assumes that all undetected midge subfamilies are present, providing a defensible upper-end estimate of CSCI scores. This range can then be used to determine if reanalysis of vouchered specimens may be worthwhile.
+
+If ambiguous taxa are largely non-midges, or if the range of possible CSCI scores identified through the `MissingMidges()` function is too large, additional sample collection may be necessary.
+
+### Abnormal stream flow
 
 *Why is this a problem?* 
 
-Abnormal flow events or high flow conditions can scour stream beds and lower biodiversity as a site. This can produce samples that have lower macroinveretebreate diversity than would be expected for what the site supports under baseline conditions. Although high flow events can occur during and after storms, scouring resulting from human activities (e.g., dam releases) should be interpreted as an impact.  In such cases, the CSCI scores are expected to reflect the impact of an anthropogenic stressor and the sample should be considered valid.  For baseline assessment, scour from natural events and the effect on the sample are the primary concern for validation.
+Abnormal flow events or high flow conditions can scour stream beds and lower biodiversity as a site. This can produce samples that have lower macroinveretebreate diversity than would be expected for what the site supports under baseline conditions. Although high flow events can occur during and after storms, scouring resulting from human activities (e.g., dam releases) should be interpreted as an impact.  In such cases, the CSCI scores are expected to reflect the impact of an anthropogenic stressor and the sample should be considered __valid__.  For baseline assessment, scour from natural events and the effect on the sample are the primary concern for validation.
 
-*Where do you find an answer?*
+The influence of abnormal flow __does not invalidate__ a CSCI score. On the contrary, low scores could indicate that the abnormal flows are having a detrimental impact on stream condition. However, abnormal flows could obscure the impacts of other stressors, like pollution or habitat degradation, and the data may be less useful to answer certain bioassessment questions.
 
-Field notes should provide indications of what scour looks like at a site, relative to normal conditions. It is up to the analyst to determine what constitutes rejectable scour.  Consulting data from nearby weather stations could provide some information about precipitation events that could cause scour ([NOAA stations](https://www.ncdc.noaa.gov/cdo-web/datatools/findstation).  USGS [flow stations](https://waterdata.usgs.gov/nwis/rt) also provide direct measures of flow in continuous records. Dam operations that could affect flow could be directly obtained from the operator to identify periods when water was released.
+*Where do you find answers and how are they evaluated?*
 
-### Was the sample affected by drought?
+There are three typical sources of information about scour (in order of decreasing importance for validation):
+
+1. Notes from field crews should indicate if they observed evidence of recent scour (e.g., minimal algae growth, evidence of recently displaced rocks, etc.). Site photos collected by field crews may provide further evidence.
+     * Notes from well trained, experienced, and regularly audited/intercalibrated field crews should be considered evidence that scour may have influenced a bioassessment sample.
+
+2. Continuous flow data from a stream gauge (e.g., USGS flow stations). In general, gauges should be close to the sampling location (ideally, the areas of the watershed contributing to the gauge and the watershed contributing to the sampling location should vary by no more than 10%). These data can be used to produce hydrographs, indicating the timing of peak flows, relative to the timing of sample collection. For sites downstream of dams (within 5 km), data on dam releases may provide similar evidence. 
+     * Hydrographs that indicate the sudden onset of flow within 2 weeks of the sampling date should be considered evidence that scour may have influenced a bioassessment sample.
+
+Below is an example of retrieving stream gauge data using the USGS `dataRetrieval` package: 
+
+```{r}
+siteNumber <- "11087020"
+parameterCd <- "00060"  # Discharge
+startDate <- "2015-10-01"  
+endDate <- "2019-09-30" 
+
+discharge <- readNWISdv(siteNumber, 
+                        parameterCd, startDate, endDate)
+
+plot(X_00060_00003 ~ Date, type = 'l', data = discharge, ylab = 'Discharge (ft3/s)')
+
+png(here('analysis/figures/sgrflo.png'), height = 4, width = 7, family = 'serif', units = 'in', res = 300)
+plot(X_00060_00003 ~ Date, type = 'l', data = discharge, ylab = 'Discharge (ft3/s)')
+dev.off()
+
+```
+
+
+3. Rainfall data (e.g., from NOAA stations) may also provide evidence of scour. However, a small amount of rainfall can lead to extensive scour at some sites, while large storms may have minimal impact on others. Data from nearby gauges (within 10 km in low elevations, or 5 km in mountainous regions) can be used to identify the timing and magnitude of storms, which can then be used to infer if scouring might have occurred.
+     * Evidence of major storms occurring within 2 weeks of the sampling date should be considered evidence that scour may have influenced a bioassessment sample. As a general rule for the San Gabriel watershed, a major storm is one with more than __1 inch__ of precipitation in 24 hours. However, best professional judgment and local expertise may support different criteria for identifying major storms in some settings.
+
+*What can you do about it?*
+
+Additional samples may need to be collected if a sample was affected by abnormal flow conditions.
+
+### Drought conditions
 
 *Why is this a problem?* 
 
@@ -150,17 +207,17 @@ Drought conditions can stress stream communities in several ways, primarily by r
 
 Normal protocols defined under the stream sampling SOP [@Ode16b] require that sampling be conducted under baseline conditions.  Field notes should be consulted to determine if flow was abnormally low, possibly as a result of drought or diversions. For example, sampling transects may have been skipped if stream flow was discontinuous on the sampling reach.  The field notes should indicate if any deviation occurred from the normal protocol. Sites where the normal sampling protocol was altered do not produce accurate CSCI scores. Moreover, a [weekly drought map](https://www.climate.gov/maps-data/dataset/weekly-drought-map) can be consulted to provide additional information on conditions at the time of sampling.
 
-### Was the sample affected by fire?
+### Fire
 
 *Why is this a problem?* 
 
-Fire events that occur in the watershed or riparian area can dramatically affect CSCI scores. Fire can alter soil chemistry and water runoff characteristics, which in turn affects stream conditions.  Sites impacted by fire typically have increases in fine sediment and chemical changes from burned debris or litter that flows downstream.  Riparian conditions may also change if vegetation in or around the stream is removed by fire, which can increase stream temperature.  As a result, biological integrity is reduced post-fire and may not recover until several years after the fire.  An evaluation of fire impacted sites in the Lake Tahoe basin showed that communities did not recover until two years after a fire event [@Oliver12].  Although fire is a natural phenomenen, an increase in the severity and magnitude may result from climate change or may otherwise be exacerbated by drought conditions.  
+Fire events that occur in the watershed or riparian area can dramatically affect CSCI scores. Fire can alter soil chemistry and water runoff characteristics, which in turn affects stream conditions.  Sites impacted by fire typically have increases in fine sediment and chemical changes from burned debris or litter that flows downstream.  Riparian conditions may also change if vegetation in or around the stream is removed by fire, which can increase stream temperature.  As a result, biological integrity is reduced post-fire and may not recover until several years after the fire.  An evaluation of fire impacted sites in the Lake Tahoe basin showed that communities did not recover until two years after a fire event [@Oliver12].  In southern California, bioassessment scores at reference sites did not recover until one to two years post-fire, with burned sites having reduced taxonomic diversity and characterized by rapid colonizers and pollution-tolerant taxa (e.g., black flies and minnow mayflies) [@Rehn11]. Although fire is a natural phenomenen, an increase in the severity and magnitude may result from climate change or may otherwise be exacerbated by drought conditions.  
 
 *Where do you find an answer?*
 
 As always, field notes should indicate if conditions at the time of sampling are affected by fire.  Additionally, geospatial data can be consulted to view fire perimeter maps ([Cal Fire Hub](https://hub.arcgis.com/datasets/653647b20bc74480b335e31d6d81a52f)) that may have occurred in the watershed for a sampling site.  Overlaying the fire perimeter over the watershed boundary can provide an indication of what percentage of the watershed was burned.  There are no clear boundaries for how much of the watershed is burned to determine if the stream sampling site is adversely affected. However, impacts are more likely to be observed if a larger perecentage of the watershed was burned and the fire perimeter is closer to the sampling site (e.g., as opposed to higher up in the watershed). 
 
-### Was the sample affected by vegetation management and/or debris removal?
+### Vegetation management, debris removal
 
 *Why is this a problem?* 
 
@@ -170,7 +227,7 @@ Vegetation management, debris removal, and stream regrading can be common manage
 
 Flood control maintenance records provided by public works departments or sanitation districts can provide information on the location and types of maintenance activities that could have occurred at a sampling site.  Field notes may also indicate conditions that suggest recent maintenance operations have occurred, such as a stream bed that has been recently regraded or habitat conditions that otherwise differ from those that were observed at the previous visit (e.g., vegetation present previous year but absent in the current). 
 
-### Was the sample affected by vector control activities?
+### Vector control activities
 
 *Why is this a problem?*
 
@@ -180,7 +237,7 @@ Vector control activities are also common in urban streams to control nuisance s
 
 Records in existing databases, such as the SMC database, can indicate if biological control vectors are present.  For example, fish surveys or field notes could indicate if mosquitofish are present at a site.  Chemistry data may also indicate if pesticides are present.  If none of the above provide clues, municipal agencies that conduct vector control operations could be contacted.
 
-### Was the sample outside of the typical index period?
+### Sample was taken outside of the typical index period
 
 *Why is this a problem?* 
 
@@ -190,7 +247,7 @@ The SOP guidelines for field sampling of macroinvertebrates [@Ode16b] states the
 
 The date of sampling should coincide with the guidelines outlined above.  However, in southern California, these recommended sampling dates are contracted due to more pronounced seasonal flow cycles in this more arid climate. If sampling is well past July or well before April, the likelihood increases of not sampling the community under baseline conditions. Also, see the guidelines above on scour and drought as this often relates directly to the sample period.
 
-### Does the site have a bad watershed delineation?
+### Watershed delineation
 
 *Why is this a problem?* 
 
@@ -219,7 +276,7 @@ Figure \@ref(fig:delinex2) provides some additional examples of how snapping can
 knitr::include_graphics(here('analysis/figures', 'delinex2.png'))
 ```
 
-### Are there unusual settings where the CSCI is known to give low scores?
+### Unusual settings where the CSCI is known to give low scores
 
 *Why is this a problem?* 
 
@@ -235,7 +292,7 @@ Proving that natural settings introduce bias to the CSCI or other bioassessment 
 1.	Evaluate scores at reference sites in the unusual setting. If scores are high (e.g., mean close to 1, 90% of scores > 0.79), you have confidence that the CSCI is valid in this setting. Look in [CEDEN](http://www.ceden.org/) or the SMC data portal as a preliminary step in finding these sites. Additionally, consult the development data that comes with the [CSCI](https://github.com/SCCWRP/CSCI) package.  Specifically, the `loadRefBugData()` function can be used to view reference taxonomy data or the `loadRefData()` function can be used to view reference site data that were used to build the CSCI.
 1. If reference sites are unavailable to characterize the unusual setting, the least stressed sites should be identified.  If the CSCI scores are high at these sites (e.g., mean close to 1, 90% of scores > 0.79), there is confidence that the CSCI is valid in this setting.  However, if these scores are lower, the CSCI may or may not be valid at identifying reference conditions in this setting.  Regardless, the scores may still be valid for evaluating relative condition. Consider evaluating if CSCI scores respond negatively to stressor gradients within this setting.  If there is substantial correlation (e.g., R$^2$ >0.2), the CSCI is likely responding to stress in this setting.
 
-### Are the GIS predictors for the CSCI adequate?
+### Inadequate GIS predictors for the CSCI
 
 *Why is this a problem?*
 
@@ -249,7 +306,7 @@ The wateshed delineation should first be evaluated to determine accuracy, see th
 
 The landscape model validation questions correspond to the right track of the grey validation box in Figure \@ref(fig:valflo).
 
-### Is the sampling reach atypical of a channel's overall class (e.g., unconstrained class surrounded by constrained classes)?
+### Sampling reach is atypical of a channel's overall class (e.g., unconstrained class surrounded by constrained classes)
 
 *Why is this a problem?*
 
@@ -265,7 +322,7 @@ knitr::include_graphics(here("analysis/figures", "scapex.png"))
 
 For locations not in the San Gabriel watershed, a [shapefile](https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f) is available for all stream reaches in California where the landscape model was applied.   
 
-### Has land cover recently changed?
+### Land cover has recently changed
 
 *Why is this a problem?*
 
@@ -310,7 +367,7 @@ The Google Earth (<https://www.google.com/earth/>) time slider provides a useful
 knitr::include_graphics(here('analysis/figures', 'luchng.png'))
 ```
 
-### Are there constraints not captured by the landscape model that are affecting biology at the site?
+### Constraints not captured by the landscape model
 
 *Why is this a problem?*
 
@@ -320,7 +377,7 @@ As noted in the previous question, the landscape model was calibrated using larg
 
 A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts might not be explicitly included in the landscape model and should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
 
-### Do the spatial data for the stream channel match the actual location on the landscape? 
+### Spatial data for the stream channel don't match the actual location on the landscape
 
 *Why is this a problem?*
 
@@ -334,7 +391,7 @@ Figure \@ref(fig:hydroex) shows an example of where landscape model results are 
 knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 ```
 
-### Are the results from the landscape model close to key decision points?
+### Results from the landscape model are close to key decision points
 
 *Why is this a problem?*
 
@@ -387,9 +444,35 @@ The following is a list of resources that can provide information to address the
 
 # Appendix
 
+## Evaluating sample count effects on CSCI scores
+
+An analysis of the effect on CSCI scores of systematically reducing the sample count well below 600 individuals for several sites is provided in the appendix.  Figure \@ref(fig:smpeff) was created by taking subsamples of the total sample size for six different sites with a range of CSCI scores (horizontal dashed lines in Figure \@ref(fig:smpeff)a).  For each sample count, 100 subsamples were randomly selected from the total and CSCI scores were summarized by the average and coefficient of variation.  Overall, reducing the sample size caused reductions in the CSCI scores, with the reductions increasing more quickly with smaller sample sizes.  Figure \@ref(fig:smpeff)b shows the relative change as a proportion from the actual CSCI score.  The CSCI score is within ten percent of the actual score with sample counts of around 250 or more.  CSCI scores were reduced by greater than ten percent of the actual score with lower sample counts, the exception being a site with very low diversity. The variation of CSCI scores for each sample count also increases with lower sample counts (Figure \@ref(fig:smpeff)c), although variation did not exceed ten percent until very low sample sizes (e.g., 150 or less).  
+
+Based on the above analyses, we recommend a minimum sample size of 250 for a valid sample. Detailed recommendations are as follows:
+
+* CSCI scores are generally within ten percent of the actual with sample counts of 250 or more
+
+* Changes in CSCI score with lower samples are similar for high or low quality sites, however; 
+
+* Sites with very low scores and very low richness are minimally affected by changes in sample counts.
+
+* Precision decreases with lower sample size, although variation is typically less than 10% of the true mean with sample sizes of 200 or more.
+
 ```{r smpeff, fig.cap = "Effects of reducing sample size on CSCI scores."}
 knitr::include_graphics('../figures/summary_results_effort.png')
 ```
+
+## Evaluating ambigous taxa effects on CSCI scores
+
+Ambiguous taxa were introduced by replacing individuals in the sample that had known identifications with the taxonomic Order.  By doing so, species were combined into larger groups at the Order level and discarded from the CSCI sample if the Order could not be resolved for any metric calculations.  An increasing number of ambiguity was evaluated ranging from 10% (right side of plots) to 90% ambiguous (left side of plots).  For each level of percent ambiguity (or percent taxa identified), 100 samples were evaluated where a different set of individuals were randomly selected to replace with the Order.  As before, the results in the plots represent the average CSCI score for the 100 random samples (Figures \@ref(fig:smpamb)a,b) and the coefficient of variation associated with the 100 random samples (Figures \@ref(fig:smpamb)c).
+
+Based on the above analyses, we recommend a maximum percentage of ambiguous taxa not to exceed 50% (i.e., percent of identified taxa not to fall below 50%).  Details include:
+
+* Increasing ambiguity caused a decrease in CSCI scores from the true estimates
+
+* CSCI scores are generally within ten percent of the actual if the ambiguous taxa are less than 50-60% of the total sample
+
+* Precision decreases with more ambiguous taxa, although variation is typically less than 10% of the true mean if at least 30-40% of the sample contains unambiguous taxa.
 
 ```{r smpamb, fig.cap = "Effects of introducing ambiguous taxa on CSCI scores."}
 knitr::include_graphics('../figures/summary_results_ambig.png')
