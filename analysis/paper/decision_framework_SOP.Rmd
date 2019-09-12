@@ -19,11 +19,13 @@ knitr::opts_chunk$set(
   message = FALSE,
   echo = FALSE,
   comment = "#>",
-  fig.path = "../figures/"
+  fig.path = "../figures/", 
+  dev.args = list(family = 'serif')
 )
 
 library(here)
 library(tidyverse)
+library(patchwork)
 
 # # extract bib entries from online
 # Jabbrev::bib_scrp(
@@ -35,12 +37,15 @@ library(tidyverse)
 # # check spelling
 # spelling::spell_check_files(here('analysis/paper', 'decision_framework_SOP.Rmd'))
 
+load(file = here('analysis/data', 'typscrs.RData'))
+load(file = here('analysis/data', 'csciipicram.RData'))
+
 devtools::load_all('.', quiet = T)
 ```
 
 # Background
 
-The California Stream Condition Index or CSCI is a tool for evaluating the biological integrity of wadeable streams in California using aquatic insect as indicators of stream health and is applicable to most of the diverse conditions found in the state [@Mazor16].  The CSCI is used in routine assessments conducted by the San Gabriel River (SGR) Regional Monitoring Program, a copperative non-governmental organization that manages aquatic resources in the watershed.  CSCI data collected by the SGR Regional Monitoring Program are the most comprehensive sources of information on biological condition of streams in the region.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
+The California Stream Condition Index or CSCI is a tool for evaluating the biological integrity of wadeable streams in California using aquatic insect as indicators of stream health and is applicable to most of the diverse conditions found in the state [@Mazor16].  The CSCI is used in routine assessments conducted by the San Gabriel River (SGR) Regional Monitoring Program, a cooperative non-governmental organization that manages aquatic resources in the watershed.  CSCI data collected by the SGR Regional Monitoring Program are the most comprehensive sources of information on biological condition of streams in the region.  Established field sampling protocols are in place to ensure that the data are sufficient to provide an accurate representation of biological communities to evaluate with the CSCI. 
 
 Although the CSCI provides information about the condition of a stream, managers may also want to know what conditions are expected in a stream, given its landscape context. For example, urbanized watersheds may be expected to support low CSCI scores, whereas an undeveloped watershed may support higher scores. Sites that score higher or lower than expected are often a priority for follow-up management actions, such as enhanced investigations, or causal assessment that could lead to restoration. A landscape model that predicts ranges of likely CSCI scores has been developed and applied to most streams in California, including the SGR watershed. 
 
@@ -74,7 +79,7 @@ knitr::include_graphics('../figures/simp_temp.png')
 
 The conceptual framework for the validation process is shown in Figure \@ref(fig:valflo).  High priority sites are first identified by comparing CSCI scores to expectations from the landscape model. Validation can occur if a site is considered high priority, which may be a site that has a CSCI score that is not within the expected range.  If the site is otherwise low priority, then baseline monitoring and maintenance should be continued.  For high priority sites, the validation process is shown in the light grey box.  
 
-Separate but parallel validation processes occur for the CSCI score and landscape model classification. In both validation processes, questions vary in the level of difficulty to answer regarding validity of the CSCI sample or SCAPE ouput.  Difficulty can very either because the data to address the question may or may not be readily available or the certainty of the conclusion can vary because of incomlete knowledge about how much the issue affects the outcome. Questions are generally organized in the section below from simple/easy to answer vs more difficult questions that may require some level of professional judgement. 
+Separate but parallel validation processes occur for the CSCI score and landscape model classification. In both validation processes, questions vary in the level of difficulty to answer regarding validity of the CSCI sample or SCAPE output.  Difficulty can very either because the data to address the question may or may not be readily available or the certainty of the conclusion can vary because of incomplete knowledge about how much the issue affects the outcome. Questions are generally organized in the section below from simple/easy to answer vs more difficult questions that may require some level of professional judgement. 
 
 A CSCI score or landscape model classification can be invalidated at any step in the validation process.  A final conclusion is that one or both of the results are invalidated and that more data may be needed, which can include a site visit to collect information or to verify existing data.  Once new data are obtained or existing data are confirmed, the validation process is reinitiated.  The process occurs iteratively until both the CSCI score and landscape model result are sufficiently validated, i.e., the analyst has confidence the results of both are sufficient for pursuing follow-up actions. If both are validated, the validation process is finished and additional actions can be pursued, which may include rapid causal analysis to determine why biological condition differs from the expectation. If it is not possible to validate the information with additional data, the analyst can also decide to proceed with follow-up actions regardless of the results.  In other words, the analyst may decide to trust the results based on their professional judgment, regardless of what the validation process provided.  
 
@@ -170,25 +175,20 @@ There are three typical sources of information about scour (in order of decreasi
 2. Continuous flow data from a stream gauge (e.g., USGS flow stations). In general, gauges should be close to the sampling location (ideally, the areas of the watershed contributing to the gauge and the watershed contributing to the sampling location should vary by no more than 10%). These data can be used to produce hydrographs, indicating the timing of peak flows, relative to the timing of sample collection. For sites downstream of dams (within 5 km), data on dam releases may provide similar evidence. 
      * Hydrographs that indicate the sudden onset of flow within 2 weeks of the sampling date should be considered evidence that scour may have influenced a bioassessment sample.
 
-Below is an example of retrieving stream gauge data using the USGS `dataRetrieval` package: 
+Below is an example of retrieving stream gauge data using the USGS [`dataRetrieval`](http://usgs-r.github.io/dataRetrieval/index.html) package for R [@DeCicco18]: 
 
-```{r}
-siteNumber <- "11087020"
+```{r, echo = T, message = F, warning = F, fig.cap = 'Flow record for four years at the San Gabriel mainstem.  Note the storm peaks in the winter rainy season that could be consided abnormal flow.', fig.height = 4, fig.width = 8}
+library(dataRetrieval)
+
+siteNumber <- "11087020" # San Gabriel mainstem
 parameterCd <- "00060"  # Discharge
 startDate <- "2015-10-01"  
 endDate <- "2019-09-30" 
 
-discharge <- readNWISdv(siteNumber, 
-                        parameterCd, startDate, endDate)
+discharge <- readNWISdv(siteNumber, parameterCd, startDate, endDate)
 
 plot(X_00060_00003 ~ Date, type = 'l', data = discharge, ylab = 'Discharge (ft3/s)')
-
-png(here('analysis/figures/sgrflo.png'), height = 4, width = 7, family = 'serif', units = 'in', res = 300)
-plot(X_00060_00003 ~ Date, type = 'l', data = discharge, ylab = 'Discharge (ft3/s)')
-dev.off()
-
 ```
-
 
 3. Rainfall data (e.g., from NOAA stations) may also provide evidence of scour. However, a small amount of rainfall can lead to extensive scour at some sites, while large storms may have minimal impact on others. Data from nearby gauges (within 10 km in low elevations, or 5 km in mountainous regions) can be used to identify the timing and magnitude of storms, which can then be used to infer if scouring might have occurred.
      * Evidence of major storms occurring within 2 weeks of the sampling date should be considered evidence that scour may have influenced a bioassessment sample. As a general rule for the San Gabriel watershed, a major storm is one with more than __1 inch__ of precipitation in 24 hours. However, best professional judgment and local expertise may support different criteria for identifying major storms in some settings.
@@ -201,51 +201,104 @@ Additional samples may need to be collected if a sample was affected by abnormal
 
 *Why is this a problem?* 
 
-Drought conditions can stress stream communities in several ways, primarily by reducing flow below baseline.  Flow reduction can alter the physical and chemical conditions in the stream, which can adversely impact biological communities.  Changes from reduced flow may include reduced dissolve oxygen, increased stream temperatures, encroachment of riparian vegation, concentration of pollutants, and saltwater intrusion in coastal streams. Natural streams have some resilience to drought, particularly those in semi-arid climates such as southern California.  As such, CSCI scores in streams where drought conditions are not uncommon do provide an accurate indication of biological integrity.  However, water diversions as part of dam operations or municipal water use can reduce community resilience to drought.  In these cases, abnormally low CSCI scores that do not reflect the actual biological condition are the expected outcome.
+Drought conditions (and the management response to droughts, such as diversions or groundwater extraction) can stress stream communities in several ways, primarily by reducing flow below baseline.  Flow reduction can alter the physical and chemical conditions in the stream, which can adversely impact biological communities.  Changes from reduced flow may include reduced dissolve oxygen, increased stream temperatures, encroachment of riparian vegetation, concentration of pollutants, and saltwater intrusion in coastal streams. Natural streams have some resilience to drought, particularly those in semi-arid climates such as southern California.  
+
+The influence of drought does not invalidate a CSCI score. As described above, drought may exacerbate the impacts of anthropogenic stressors. However, determining whether drought has influenced a CSCI score can be useful for assessing overall stream condition.
 
 *Where do you find an answer?*
 
-Normal protocols defined under the stream sampling SOP [@Ode16b] require that sampling be conducted under baseline conditions.  Field notes should be consulted to determine if flow was abnormally low, possibly as a result of drought or diversions. For example, sampling transects may have been skipped if stream flow was discontinuous on the sampling reach.  The field notes should indicate if any deviation occurred from the normal protocol. Sites where the normal sampling protocol was altered do not produce accurate CSCI scores. Moreover, a [weekly drought map](https://www.climate.gov/maps-data/dataset/weekly-drought-map) can be consulted to provide additional information on conditions at the time of sampling.
+Normal protocols defined under the stream sampling SOP [@Ode16b] require that sampling be conducted under baseline conditions.  Field notes should be consulted to determine if flow was abnormally low, possibly as a result of drought or diversions. For example, sampling transects may have been skipped if stream flow was discontinuous on the sampling reach.  The field notes should indicate if any deviation occurred from the normal protocol. Sites where the normal sampling protocol was altered do not produce accurate CSCI scores. 
+
+External data sources can also be consulted. A [weekly drought map](https://www.climate.gov/maps-data/dataset/weekly-drought-map) may provide information on conditions at the time of sampling.  Climate and drought indices can also be estimated using [open source software](https://www.drought.gov/drought/climate-and-drought-indices-python).  The Palmer Drought Severity Index ([PDSI](http://www.droughtmanagement.info/palmer-drought-severity-index-pdsi/)) may be a good point of reference.
+
+*How do you evaluate the answer?*
+
+Drought conditions should be evaluated relative to the magnitude (how dry) and duration (how long).  Drought conditions that are more severe and that persist for longer will have a larger effect on stream health.
+
+*What can you do about it?*
+
+Additional samples may need to be collected if a sample was affected by drought conditions.
 
 ### Fire
 
 *Why is this a problem?* 
 
-Fire events that occur in the watershed or riparian area can dramatically affect CSCI scores. Fire can alter soil chemistry and water runoff characteristics, which in turn affects stream conditions.  Sites impacted by fire typically have increases in fine sediment and chemical changes from burned debris or litter that flows downstream.  Riparian conditions may also change if vegetation in or around the stream is removed by fire, which can increase stream temperature.  As a result, biological integrity is reduced post-fire and may not recover until several years after the fire.  An evaluation of fire impacted sites in the Lake Tahoe basin showed that communities did not recover until two years after a fire event [@Oliver12].  In southern California, bioassessment scores at reference sites did not recover until one to two years post-fire, with burned sites having reduced taxonomic diversity and characterized by rapid colonizers and pollution-tolerant taxa (e.g., black flies and minnow mayflies) [@Rehn11]. Although fire is a natural phenomenen, an increase in the severity and magnitude may result from climate change or may otherwise be exacerbated by drought conditions.  
+Fire events that occur in the watershed or riparian area can dramatically affect CSCI scores. Fire can alter soil chemistry and water runoff characteristics, which in turn affects stream conditions.  Sites impacted by fire typically have increases in fine sediment and chemical changes from burned debris or litter that flows downstream.  Riparian conditions may also change if vegetation in or around the stream is removed by fire, which can increase stream temperature.  As a result, biological integrity is reduced post-fire and may not recover until several years after the fire.  An evaluation of fire impacted sites in the Lake Tahoe basin showed that communities did not recover until two years after a fire event [@Oliver12].  In southern California, bioassessment scores at reference sites did not recover until one to two years post-fire, with burned sites having reduced taxonomic diversity and characterized by rapid colonizers and pollution-tolerant taxa (e.g., black flies and minnow mayflies) [@Rehn11]. 
+Although fire is a natural phenomenon, an increase in the severity and magnitude may result from climate change or may otherwise be exacerbated by drought conditions.  Moreover, evidence of the influence of wildfire does not invalidate a CSCI score, but may provide useful information for understanding why scores may be low.
 
 *Where do you find an answer?*
 
-As always, field notes should indicate if conditions at the time of sampling are affected by fire.  Additionally, geospatial data can be consulted to view fire perimeter maps ([Cal Fire Hub](https://hub.arcgis.com/datasets/653647b20bc74480b335e31d6d81a52f)) that may have occurred in the watershed for a sampling site.  Overlaying the fire perimeter over the watershed boundary can provide an indication of what percentage of the watershed was burned.  There are no clear boundaries for how much of the watershed is burned to determine if the stream sampling site is adversely affected. However, impacts are more likely to be observed if a larger perecentage of the watershed was burned and the fire perimeter is closer to the sampling site (e.g., as opposed to higher up in the watershed). 
+As always, field notes should indicate if conditions at the time of sampling are affected by fire.  Additionally, geospatial data can be consulted to view fire perimeter maps ([Cal Fire Hub](https://hub.arcgis.com/datasets/653647b20bc74480b335e31d6d81a52f)) that may have occurred in the watershed for a sampling site.  Overlaying the fire perimeter over the watershed boundary can provide an indication of what percentage of the watershed was burned.  There are no clear boundaries for how much of the watershed is burned to determine if the stream sampling site is adversely affected. However, impacts are more likely to be observed if a larger percentage of the watershed was burned and the fire perimeter is closer to the sampling site (e.g., as opposed to higher up in the watershed). 
+
+*How do you evaluate the answer?*
+
+Although fire impacts can vary from site to site, these guidelines can provide a general indication if a site is likely to be impacted:
+
+* The site was directly burned within the past 5 years.
+
+* More than 10% of the watershed within 5 km of the sampling location was burned within the past 5 years.
+
+* More than 25% of the watershed (any distance upstream of the sampling location) was burned within the past 5 years.
+
+*What can you do about it?*
+
+Previous studies in southern California show that many burned reference sites have scores that return to pre-burned values in 1-2 years [@Rehn11]. Therefore, we recommend resampling ~2 years post burn.
 
 ### Vegetation management, debris removal
 
 *Why is this a problem?* 
 
-Vegetation management, debris removal, and stream regrading can be common management activities in urban streams. These activities help remove in-stream barriers that may obstruct normal flow operations or otherwise assist in maintaining flood control.  However, these activities can have acute, short-term impacts on benthic communities, either through direct habitat removal (as for vegetation removal) or promotion of downstream drift (as for regrading). Herbicides that could be used for vegetation removal may also be non-specific and can harm other stream biota.  Although low CSCI scores correctly reflect these impacts, we may want to identify samples that are particularly affected by them, as opposed to samples that reflect baseline conditions.
+Vegetation management, debris removal, and stream regrading can be common management activities in urban streams. These activities help remove in-stream barriers that may obstruct normal flow operations or otherwise assist in maintaining flood control.  However, these activities can have acute, short-term impacts on benthic communities, either through direct habitat removal (as for vegetation removal) or promotion of downstream drift (as for regrading). Herbicides that could be used for vegetation removal may also be non-specific and can harm other stream biota.  Although low CSCI scores correctly reflect these impacts, we may want to identify samples that are particularly affected by them, as opposed to samples that reflect baseline conditions. Evidence of these activities does not invalidate a CSCI score.
 
 *Where do you find an answer?*
 
 Flood control maintenance records provided by public works departments or sanitation districts can provide information on the location and types of maintenance activities that could have occurred at a sampling site.  Field notes may also indicate conditions that suggest recent maintenance operations have occurred, such as a stream bed that has been recently regraded or habitat conditions that otherwise differ from those that were observed at the previous visit (e.g., vegetation present previous year but absent in the current). 
 
+*How do you evaluate the answer?*
+
+If vegetation or debris removal occurred within 2 weeks of the sampling event, the CSCI score is likely to be influenced by this activity.
+
+*What can you do about it?*
+
+Additional samples may need to be collected at a later date after which biological communities are not affected by the vegetation removal. 
+
 ### Vector control activities
 
 *Why is this a problem?*
 
-Vector control activities are also common in urban streams to control nuisance species that may impact public well-being and health.  Pesticides may be applied in some cases, whereas biological controls could be used in others (BTI applications or mosquitofish introductions).  In more extreme cases, waterbodies may be diverted or drained to eliminate a water source that acts as a biological vector. In all cases, vector control activities can negatively affect the natural macroinvertebrate community as controls are usually non-specific, causing lower CSCI scores. 
+Vector control activities are also common in urban streams to control nuisance species that may impact public well-being and health.  Pesticides may be applied in some cases, whereas biological controls could be used in others (BTI applications or mosquitofish introductions).  In more extreme cases, waterbodies may be diverted or drained to eliminate a water source that acts as a biological vector. In all cases, vector control activities can negatively affect the natural macroinvertebrate community as controls are usually non-specific, causing lower CSCI scores. Evidence of these activities does not invalidate a CSCI score.
 
 *Where do you find an answer?*
 
 Records in existing databases, such as the SMC database, can indicate if biological control vectors are present.  For example, fish surveys or field notes could indicate if mosquitofish are present at a site.  Chemistry data may also indicate if pesticides are present.  If none of the above provide clues, municipal agencies that conduct vector control operations could be contacted.
 
-### Sample was taken outside of the typical index period
+*How do you evaluate the answer?*
+
+Any evidence of pesticide application or biological control of disease vectors that has occurred within the same year as sampling collection is likely to influence a CSCI score.
+
+*What can you do about it?*
+
+If possible, collect additional samples prior to the implementation of vector control activities.
+
+### Sample collected outside of the typical index period
 
 *Why is this a problem?* 
 
-The SOP guidelines for field sampling of macroinvertebrates [@Ode16b] states the typical index period as being from __May__ through __September__ to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California, and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated. 
+The SOP guidelines for field sampling of macroinvertebrates [@Ode16b] states the typical index period as being from __May__ through __September__ to characterize base flow conditions.  This period depends on the region, such that sampling can occur towards the earlier end of this range in southern California (typically May 15 to July 15), and later in this range for higher latitudes.  Sampling that occurs outside of this range could produce a sample that is not representative of the macroinvertebrate community for which the CSCI is calculated. 
+
+Sampling outside the index period may invalidate a CSCI score if it results in high numbers of ambiguous taxa, as described above.
 
 *Where do you find an answer?*
 
 The date of sampling should coincide with the guidelines outlined above.  However, in southern California, these recommended sampling dates are contracted due to more pronounced seasonal flow cycles in this more arid climate. If sampling is well past July or well before April, the likelihood increases of not sampling the community under baseline conditions. Also, see the guidelines above on scour and drought as this often relates directly to the sample period.
+
+*How do you evaluate the answer?*
+
+Several studies have shown that the CSCI is generally robust to samples collected outside of the index period, as long as flow conditions are adequate for sampling, and specimens are mature enough to support unambiguous identifications. Refer to criteria about flow and ambiguous taxa for evaluating samples collected outside the normal index period.
+
+*What can you do about it?*
+
+Collect additional samples during the recommended sampling period.
 
 ### Watershed delineation
 
@@ -260,47 +313,94 @@ The watershed delineation process is partially automated using standard geospati
 
 For the first scenario, the site location is typically referenced by longitude/latitude coordinates.  For delineation, these coordinates must be spatially linked to a stream reach in a GIS. Stream reaches are usually represented by the NHD-Plus dataset [@McKay12], which is a national-level product describing stream hydrography for the entire United States. The first step in the delineation is to "snap" the site location to the nearest stream reach.  If the site location is imprecise or was entered incorrectly, the snapping distance can be large.  Conversely, the stream reach in the NHD-Plus dataset may not accurately portray the true channel.  In either case, the resulting watershed will originate from a location that does not represent reality.  Visual assessment of the site location, the segment that was used for the delineation, and the snapping distance can provide clues about the quality of the delineation.  
 
-For the second scenario, topographical characteristics of the landscape around a site can also affect the quality of the delineation.  In general, watershed boundaries are more easily identified at high gradient sites in hilly or mountainous areas where topographical variation is more pronounced.  Conversely, low gradient streams may have less accurate watershed delineations because it is more difficult to identify clear elevation differences that define drainage patterns.  The latter scenario is more common in coastal plains, plateaus, or other low elevation areas.  Developed landscapes also complicate watershed delineations because the flow of water may have been significantly altered from natural patterns.  In these cases, water may not follow strict topographical boundaries due to channelization or diversions. Overlaying the watershed delineation on aerial photos can provide clues about the effect of land use alteration on flow patterns and if the delineation is well-represented by topography.   
+For the second scenario, topographical characteristics of the landscape around a site can also affect the quality of the delineation.  In general, watershed boundaries are more easily identified at high gradient sites in hilly or mountainous areas where topographical variation is more pronounced.  Conversely, low gradient streams may have less accurate watershed delineations because it is more difficult to identify clear elevation differences that define drainage patterns.  The latter scenario is more common in coastal plains, plateaus, or other low-topography areas.  Developed landscapes also complicate watershed delineations because the flow of water may have been significantly altered from natural patterns.  In these cases, water may not follow strict topographical boundaries due to channelization or diversions. Overlaying the watershed delineation on aerial photos can provide clues about the effect of land use alteration on flow patterns and if the delineation is well-represented by topography.   
 
 *Where do you find an answer?*
 
-The original GIS file for the watershed delineation should be viewed to assess the relative quality.  If this file is unavailable, the [Streamstats](https://streamstats.usgs.gov/ss/) website can provide some clues about the watershed delineation.  Figures \@ref(fig:delinex) provides examples of two extremes when watershed delineations can be produced with differing quality.  Figure \@ref(fig:delinex)a shows a high gradient stream in a mountainous, undeveloped area.  In this scenario, the topography is sufficiently pronounced to easily identify the watershed boundaries and the hydrological flow follows the landscape.  Conversely, figure \@ref(fig:delinex)b shows a low gradient stream in an urban setting. The watershed boundaries are not easily identify from elevation gradients and the digitized stream channels probably do not accurately reflect the flow of water in this altered landscape. 
+Obtain the original watershed polygon that was delineated for the site.  This file is usually in the SMC database and can be located by contacting SCCWRP staff.  Once the file is obtained, use GIS software to overlay the polygon on a base layer that shows stream hydrolines and the surrounding landscape.  Visual inspection of the polygon with the landscape will provide some clues about the quality of the delineation. 
 
-```{r delinex, fig.cap = 'Watershed delineation examples.'}
-knitr::include_graphics(here('analysis/figures', 'delinex.png'))
-```
+*How do you evaluate the answer?*
 
-Figure \@ref(fig:delinex2) provides some additional examples of how snapping can produce inaccurate watershed delineations.  In all four plots, the pink dot represents the latitude/longitude of the recorded site location and the green dot represents the location where the site was snapped to the stream hydroline for the delineation.  In Figure \@ref(fig:delinex2)a, we see a snap that produced a likely realistic representation of the watershed that drained to the site.  However, in Figure \@ref(fig:delinex2)b, we see a problematic snap where the location was shifted upstream to a tributary.  In this case, the watershed is an under-representation of what drains to the site.  In Figure \@ref(fig:delinex2)c, we see a site that was manually snapped to a location and the watershed was manually delineated. In Figure \@ref(fig:delinex2)d, we see the same site but the snap location is likely incorrect and the resulting watershed is likely inaccurate.  These final two examples represent the challenges of watershed delineation in developed settings, where manual changes may be needed to create a more realistic interpretation of the watershed. 
+Figure \@ref(fig:delinex2) provides some examples of how snapping and quality of the delineation can produce inaccurate watershed polygons.  In all four plots, the pink dot represents the latitude/longitude of the recorded site location and the green dot represents the location where the site was snapped to the stream hydroline for the delineation.  In Figure \@ref(fig:delinex2)a, we see a snap that produced a likely realistic representation of the watershed that drained to the site.  However, in Figure \@ref(fig:delinex2)b, we see a problematic snap where the location was shifted upstream to a tributary.  In this case, the watershed is an under-representation of what drains to the site.  In Figure \@ref(fig:delinex2)c, we see a site that was manually snapped to a location and the watershed was manually delineated. In Figure \@ref(fig:delinex2)d, we see the same site but the snap location is likely incorrect and the resulting watershed is likely inaccurate.  These final two examples represent the challenges of watershed delineation in developed settings, where manual changes may be needed to create a more realistic interpretation of the watershed. 
 
 ```{r delinex2, fig.cap = 'Watershed delineation examples showing snapping challenges. The pink dot is the recorded site latitude/longitude and the green dot is the snapped location.  The watershed boundaries resulting in each case are outlined in red.'}
 knitr::include_graphics(here('analysis/figures', 'delinex2.png'))
 ```
 
-### Unusual settings where the CSCI is known to give low scores
+*What can you do about it?*
 
-*Why is this a problem?* 
+Manual editing of the polyon may be needed if the delineation is inadequate.  Alternativaly, follow the procedures in the CSCI interim instructions [@Mazor18b] to delineate a new watershed.  In both cases, the GIS predictors obtained from the delineation must be estimated again prior to calculating a new CSCI score. 
 
-There are a few locations in California where CSCI scores may be unreliable, although this is only theoretical and not shown in any literature.  In these locations, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, [@Campbell09]).  This can influence the physical and chemical characteristics of the stream that structure the diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores.  
-
-*Where do you find an answer?*
-
-Local site knowledge from field crews could provide information on abnormal locations where the biological expectations are naturally different from other streams in the region. In most cases, field crews will likely already be aware of locations where standard bioassessment methods produce odd or unexpected results compared to other locations.  Detailed geological maps may also provide clues regarding localized environmental differences that could influence the score.  
-
-Proving that natural settings introduce bias to the CSCI or other bioassessment indices is challenging, but can be done with the following steps:
-
-1.	Review the literature to determine if factors related to the setting are known to influence the abundance or distribution of benthic macroinvertebrates. The more relevant the study (e.g., in California or on taxa found in California), the better.
-1.	Evaluate scores at reference sites in the unusual setting. If scores are high (e.g., mean close to 1, 90% of scores > 0.79), you have confidence that the CSCI is valid in this setting. Look in [CEDEN](http://www.ceden.org/) or the SMC data portal as a preliminary step in finding these sites. Additionally, consult the development data that comes with the [CSCI](https://github.com/SCCWRP/CSCI) package.  Specifically, the `loadRefBugData()` function can be used to view reference taxonomy data or the `loadRefData()` function can be used to view reference site data that were used to build the CSCI.
-1. If reference sites are unavailable to characterize the unusual setting, the least stressed sites should be identified.  If the CSCI scores are high at these sites (e.g., mean close to 1, 90% of scores > 0.79), there is confidence that the CSCI is valid in this setting.  However, if these scores are lower, the CSCI may or may not be valid at identifying reference conditions in this setting.  Regardless, the scores may still be valid for evaluating relative condition. Consider evaluating if CSCI scores respond negatively to stressor gradients within this setting.  If there is substantial correlation (e.g., R$^2$ >0.2), the CSCI is likely responding to stress in this setting.
-
-### Inadequate GIS predictors for the CSCI
+### Tidal influence at a sample site
 
 *Why is this a problem?*
 
-GIS predictors are required for calculating CSCI scores. The CSCI interim intstructions [@Mazor18b] provide information on which GIS metrics are used and how they can be estimated. In addition to site latitude/longitude, the predictors include site elevation, elevation range, watershed area, average precipitation, average temperature, mean June to September monthly precipitation, average bulk soil density, average soil erodibility factor, and average phosphorus geology.  This information is used in the predictive model of the CSCI to help identify an expected macroinvertebrate community based on watershed or other landscape characteristics. If the predictors are inaccurate, then the expected community will no incorrectly predicted and the overall CSCI score will be invalid.  Predictors could be inaccurate because of an inaccurate watershed delineation or the predictors do not describe landscape conditions at the time of sampling. 
+Streams in close proximity to coastal areas may be tidally-influenced through groundwater or direct exchange through tidal inlets.  Although macroinvertebrates communities can thrive in tidally-influenced streams, the CSCI was not calibrated for these locations.  Many of the taxa expected to occur in wadeable streams cannot withstand the stresses posed by the high and fluctuating salinity levels these waterbodies exhibit, and so even an unstressed stream would likely have a low CSCI score. 
+
+Evidence of tidal influence __invalidates__ a CSCI score, except when the tidal influence is due to human activity (e.g., excessive groundwater pumping leading to saltwater intrusion). 
 
 *Where do you find an answer?*
 
-The wateshed delineation should first be evaluated to determine accuracy, see the section above.  Any inaccuracies in the delineation will produce inaccurate GIS predictors. Second, consult the section below on "has land cover changed recently?" for the landscape model.  This section describes how to validate issues of currency in GIS data. 
+1. In some coastal watersheds tidal influence is controlled by drop structures or tidal gates (e.g., the drop structures near the 405 freeway limit the extent of tidal influence on the San Gabriel River). Samples collected downstream of these controls should be considered tidally influenced.
+1. Site is located within mapped estuarine region (https://map.dfg.ca.gov/metadata/ds2792.html) and at elevations close to sea level (e.g., <10 m).
+1. Field notes or other local expertise suggesting bi-directional flows or dominance of halophytic vegetation (e.g., pickleweed, marsh cordgrass)[^*]
+1. The sample is dominated by marine or brackish invertebrates, such as polychaete worms (such as Manayunkia, Ficopomatus, or Nereis)$^1$
+1. Direct measurements of salinity at a sample site can provide an indication of relative tidal influence.  Note that tidal conditions vary daily and with precipitation patterns, so a single measure of salinity may not reflect the gradient of conditions at a site. 
+
+[^*]: These indicators should be interpreted with caution and only indicate tidal influence at sites within a few kilometers of the coast
+
+*How do you evaluate the answer?*
+
+Any indication that the sample site is tidally-influenced is evidence that the sample is not valid for calculating the CSCI, unless as noted above, the tidal-influence is the result of human activity.  Specific conductivity measurements in excess of 10,000 uS/cm$^1$ could be considered tidally-influenced.
+
+*What do you do about it?*
+
+Collect additional samples well upstream where the location is not tidally-influenced. 
+
+### Sample collected from a setting where the CSCI is suspected to give low scores
+
+*Why is this a problem?* 
+
+There are some settings in California where CSCI scores have been hypothesized to be unreliable (e.g., watershed underlain by the Monterey formation or similar recent marine sediments), although there are few studies that have thoroughly explored this issue.  In these settings, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, @Campbell09).  This setting can influence the physical and chemical characteristics of the stream that structure the diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores. Samples collected from such settings may invalidate a CSCI score, or require adjustments for correct interpretation.
+
+*Where do you find an answer and how do you evaluate the information?*
+
+Evaluating the potential that natural settings introduce bias to the CSCI or other bioassessment indices requires rigorous study, typically following these steps:
+
+1.	Review the literature to determine if factors related to the setting are known to influence the abundance or distribution of benthic macroinvertebrates. The more relevant the study (e.g., in California or on taxa found in California), the better.
+1.	Evaluate scores at reference sites in the unusual setting. If scores are high (e.g., mean close to 1, 90% of scores > 0.79), you have confidence that the CSCI is valid in this setting. Look in [CEDEN](http://www.ceden.org/) or the SMC data portal as a preliminary step in finding these sites. Additionally, consult the development data that comes with the [CSCI](https://github.com/SCCWRP/CSCI) package.  Specifically, the `loadRefBugData()` function can be used to view reference taxonomy data or the `loadRefData()` function can be used to view reference site data that were used to build the CSCI. However, keep in mind that if the unusual setting is represented in the CSCI development data set, there is little reason to doubt the applicability of the index in that setting. 
+1. If reference sites are unavailable to characterize the unusual setting, the least stressed sites should be identified.  If the CSCI scores are high at these sites (e.g., mean close to 1, 90% of scores > 0.79), there is confidence that the CSCI is valid in this setting.  However, if these scores are lower, the CSCI may or may not be valid at identifying reference conditions in this setting.  Regardless, the scores may still be valid for evaluating relative condition. Consider evaluating if CSCI scores respond negatively to stressor gradients within this setting.  If there is large correlation (e.g., R$^2$ >0.2), the CSCI is likely responding to stress in this setting.
+
+### Incorrect GIS predictors for the CSCI
+
+*Why is this a problem?*
+
+GIS predictors are required for calculating CSCI scores. The CSCI interim intstructions [@Mazor18b] provide information on which GIS metrics are used and how they can be estimated. These predictors include:
+
+* site latitude/longitude
+* site elevation
+* elevation range
+* watershed area
+* average precipitation 
+* average temperature
+* mean June to September monthly precipitation 
+* average bulk soil density
+* average soil erodibility factor
+* average phosphorus geology  
+
+This information is used in the predictive model of the CSCI to help identify an expected macroinvertebrate community based on watershed or other landscape characteristics. If the predictors are inaccurate, then the expected community will no incorrectly predicted and the overall CSCI score will be invalid.  Predictors could be inaccurate because of an inaccurate watershed delineation or the predictors do not describe landscape conditions at the time of sampling. 
+
+*Where do you find an answer?*
+
+The watershed delineation should first be evaluated to determine accuracy, see the section above.  Any inaccuracies in the delineation will produce inaccurate GIS predictors. Second, consult the section below on "has land cover changed recently?" for the landscape model.  This section describes how to validate issues of currency in GIS data. 
+
+*How do you evaluate the answer?*
+
+Verification for some of the GIS predictors reflect reality requires some background knowledge about the watershed, such as soil characteristics and climate patterns.  Other predictors can be quickly verified by manual checks for relative accuracy, such as approximate watershed area or elevation ranges.  For example, a large elevation range in a low-topography setting would be suspect.
+
+*What do yo do about it?*
+
+In most cases, the watershed delineation is the cause of incorrect GIS predictors.  See the previous section regarding bad watershed delineations. 
 
 ## Landscape model validation
 
@@ -314,13 +414,21 @@ The landscape model assigns a constraint class to digitized reaches in the NHD-P
 
 *Where do you find an answer?*
 
-Viewing an aerial image of land use for a site is the easiest way to assess the validity of an unexpected stream class.  As an example, the online [SCAPE](https://sccwrp.shinyapps.io/scape) application provides this information for the San Gabriel River Watershed. Figure \@ref(fig:scapex) was taken from SCAPE and shows a stream reach that is assigned a class of likely unconstrained.  All of the surrounding reaches are possibly or likely constrained.  Without looking at the land use, we might assume that this constraint class is invalid (Figure \@ref(fig:scapex)a). We can toggle the base layer to show a satellite image of the location to get a better idea of the landscape (Figure \@ref(fig:scapex)b).  From the satellite image we can see that this reach drains a small undeveloped, hilly area upstream of the housing units.  With this information we can assume that the constraint class is valid because it accurately reflects land use in the watershed.
+Viewing an aerial image of land use for a site is the easiest way to assess the validity of an unexpected stream class. The online [SCAPE](https://sccwrp.shinyapps.io/scape) application provides this information for the San Gabriel River Watershed.
+
+For locations not in the San Gabriel watershed, a [shapefile](https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f) is available for all stream reaches in California where the landscape model was applied.  
+
+*How do you evaluate the answer?*
+
+As an example, Figure \@ref(fig:scapex) was taken from SCAPE and shows a stream reach that is assigned a class of likely unconstrained.  All of the surrounding reaches are possibly or likely constrained.  Without looking at the land use, we might assume that this constraint class is invalid (Figure \@ref(fig:scapex)a). We can toggle the base layer to show a satellite image of the location to get a better idea of the landscape (Figure \@ref(fig:scapex)b).  From the satellite image we can see that this reach drains a small undeveloped, hilly area upstream of the housing units.  With this information we can assume that the constraint class is valid because it accurately reflects land use in the watershed.
 
 ```{r scapex, fig.cap = "An unexpected stream class is validated by examining the land use, lane cover base layer."}
 knitr::include_graphics(here("analysis/figures", "scapex.png"))
 ```
 
-For locations not in the San Gabriel watershed, a [shapefile](https://knb.ecoinformatics.org/view/urn:uuid:75411f50-32ed-42a5-bbfd-26833c7a441f) is available for all stream reaches in California where the landscape model was applied.   
+*What do you do about it?*
+
+Verify that you agree with the classification or assign a classification that is appropriate for the sampling reach. 
 
 ### Land cover has recently changed
 
@@ -359,37 +467,67 @@ knitr::kable(totab, booktabs = T, caption = cap.val)
 
 *Where do you find an answer?*
 
-There is no quantitative approach to verify if the constraint class accurately reflects the current landscape.  However, the constraint class is typically an accurate representation of the current landscape because land use changes that affect stream biology usually occur over time scales much longer than would be expected between present day and the data used to create the model.  However, in some cases, local alteration of the landscape can occur rapidly and at a scale sufficient to affect stream condition.  For example, construction of a parking lot adjacent to a stream channel could alter drainage patterns sufficiently to affect stream health.  If there is sufficient evidence that recent changes may be affecting biology and that the current constraint class is not an accurate representation of biological expectations, additional data may be consulted.  
-
 The Google Earth (<https://www.google.com/earth/>) time slider provides a useful tool to evaluate temporal changes in land use over time that could be affecting a site.  The slider can be used to view a current image and any of a number of images of land use and cover for the past twenty years.  Figure \@ref(fig:luchng) shows a screen shot from SCAPE for a current image, including some stream channels in the possibly unconstrained class.  In the right image for current conditions, we see a parking lot adjacent to the stream channel.  Using Google Earth, we can view an image from 2008 in the left image to see that this parking lot was not yet constructed.  Because our land use data used to calibrate the model correspond roughly to this time period in the right image, this stream channel may be incorrectly classified.  The channel may be more accurately described as constrained. A site visit could also confirm this information.
 
 ```{r luchng, fig.cap = "An example showing a (a) sampling location in 2008 and (b) unconstrained channels next to a new parking lot ten years later.  Note the absence of the larger parking lot in the earlier photo."}
 knitr::include_graphics(here('analysis/figures', 'luchng.png'))
 ```
 
+*How do you evaluate the answer?*
+
+There is no quantitative approach to verify if the constraint class accurately reflects the current landscape.  The constraint class is typically an accurate representation of the current landscape because land use changes that affect stream biology usually occur over time scales much longer than would be expected between present day and the data used to create the model.  However, in some cases, local alteration of the landscape can occur rapidly and at a scale sufficient to affect stream condition.  For example, construction of a parking lot adjacent to a stream channel could alter drainage patterns sufficiently to affect stream health.  If there is sufficient evidence that recent changes may be affecting biology and that the current constraint class is not an accurate representation of biological expectations, additional data may be consulted or an alternative classification could be used.  
+
+*What do you do about it?*
+
+Verify that you agree with the classification or assign a classification that is appropriate for the sampling reach. An example in the appendix describes how constraint classes can assigned manually.
+
 ### Constraints not captured by the landscape model
 
 *Why is this a problem?*
 
-As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.  Field notes or external datasets could be consulted to determine if the site classification is warranted.
+As noted in the previous question, the landscape model was calibrated using large-scale watershed characteristics (Table \@ref(tab:crvr)) that are unlikely to change dramatically over most management time scales (e.g., five to ten years).  In some instances, there may be constraints affecting biology at a site that are not captured by the model.  Many of these constraints may be short-lived or temporary disturbances that fall under the same category as those for question three for the CSCI questions (i.e., abnormal flow, fire, etc.).  The same approach to addressing validity of the CSCI score also applies to the landscape model classification.
 
-*Where do you find an answer?*
+A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts might not be explicitly included in the landscape model and should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  
 
-A more general issue applying the landscape model is that other landscape stressors not captured by the model may have had a legacy or long-term impact on stream biology.  For example, in the Sierras or northern California, timber harvesting, silviculture, or mining may have had historical impacts on biology which are not reflected in the current model.  These legacy impacts might not be explicitly included in the landscape model and should be considered in the constraint classification if the current class does not accurately characterize biological expectations.  A first step is to evaluate the variables in Table \@ref(tab:crvr) and assess how well these variables capture stressor gradients at the site of interest.  If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  
+*Where do you find and evaluate the answer?*
 
-### Spatial data for the stream channel don't match the actual location on the landscape
+Evaluate the variables in Table \@ref(tab:crvr) to determine how well these describe stressor gradients at the site.  Consult aerial maps to evaluate current land use and potential stressors that could be affecting the site.  For legacy impacts, evaluate historical data to identify stressors that may have had long-term effects on biological condition.
+
+*What do you do about it?*
+
+If they are not appropriate, consider that the current classification is invalid and alternative ways to assess constraints could be used (e.g., what is the range of scores for other sites in similar conditions for the region).  An example in the appendix describes how constraint classes can assigned manually.
+
+### Spatial data for the stream channel doesn't match the actual location on the landscape
 
 *Why is this a problem?*
 
-The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location if 1) the stream is in a landscape with altered hydrology, or 2) the stream channel has migrated over time due to normal hydro-geomorphic processes.  
+The landscape model assigns a constraint classification to every NHD-Plus stream reach where data are available.  Because of this, information from the landscape model is only as good as the spatial representation of stream locations in the hydrography dataset.  Stream reaches may not be good representations of the actual channel location for the following: 
 
-*Where do you find an answer?*
+1. The stream isn’t there anymore. It’s probably underground: 34.075933 -118.562918
+1. The flow line is close to but not exactly on the stream channel, but it probably doesn’t matter (it wouldn’t affect SCAPE classifications): 34.160683 -117.682069
+1. The flow line is close to but not exactly on the stream channel, and this discrepancy could impact the SCAPE classification: [can’t find a good example]
+1. The stream segment crosses from an undeveloped to a developed area, so the classification likely only reflects half the segment (two segments near 34.197959 -118.120379, another at 34.282809)
+1. Braided channel, with different segments having different classifications—only one can prevail! 34.433527 -119.301657
 
-Figure \@ref(fig:hydroex) shows an example of where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
+*Where do you find the answer?*
+
+Evaluate the NHD data with an aerial map that represents the landscape close to the time of sampling.  
+
+*How do you evaluate the answer?*
+
+As an example, figure \@ref(fig:hydroex) shows where landscape model results are available, whereas the stream lines represent the challenges of digitizing actual stream channels in altered landscapes.  The actual stream channel that corresponds to the spatial data represented in the NHD-Plus should be compared to verify accuracy and if the results from the landscape model still apply.  
 
 ```{r hydroex, fig.cap = "Stream hydrography in altered lanscaped.  Actual stream reaches may not be well represented by existing spatial layers."}
 knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 ```
+
+*What do you do about it?*
+
+1. Look for a "local average" or apply applications from adjacent segments that better represent the true conditions (see the appendix).
+1. Apply generic "urban" or "ag" stream derived from global/regional model averages (see the appendix)
+1. Look at channel condition:
+     a. Is it engineered? Apply SMC ranges for engineered channels (best for hard-bottom channels, as soft-bottom was too imprecise)
+     b. Look at IPI scores/CRAM scores/CRAM attribute scores. Is there a low score below which we are confident that the site is constrained? (see the appendix)
 
 ### Results from the landscape model are close to key decision points
 
@@ -397,15 +535,23 @@ knitr::include_graphics(here('analysis/figures', 'hydroex.png'))
 
 As with many decision support tools, the constraint classifications derived from the landscape model are categories that are based on binning continuous data.  This approach allows complex information to be distilled for communication in a more digestible format.  This improvement in communication comes at the expense of specificity - binning results reduces the type of information that can be obtained.  As an example, the landscape model would classify a stream reach as possibly constrained if the median score is 1/100 of a decimal place below the biological objective, whereas increasing that score by 0.02 points would cause the landscape model to classify the reach as possibly unconstrained.  Because of this, an analyst should be aware of how the constraint classes are determined and if the results for a site are close to decision points.  
 
+*Where do you find the answer?*
+
+Identify if the CSCI score or the upper/lower bounds of the expected CSCI scores for the segment are close to decision points.  The SCAPE application can provide clues.
+
+*How do you evaluate the answer?*
+
 Figure \@ref(fig:scapemec) provides a graphical description of how the landscape constraint classes are determined.  Stream segments where the predicted 90th quantile score is below the biological objective threshold are considered likely constrained, whereas those where the predicted 10th percentile is above the threshold are considered likely unconstrained. Possibly constrained and possibly unconstrained are assigned if the score expectations overlap the biological objective and the median score is below or above the objective, respectively.
 
 ```{r scapemec, fig.cap = 'Decision points and methods for defining sream classifications from the landscape model.'}
 knitr::include_graphics(here("analysis/figures", "scapemec.jpeg"))
 ```
 
-*Where do you find an answer?*
+Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classification change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objective changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points. 
 
-Sites where the 10th, median, or 90th percentile of the score expectations are near the biological objective should be further evaluated.  Does the site classification change if slightly different breakpoints are used, such as the 5th or 95th percentile of scores?  Does the site classification change if the biological objective changes?  The online SCAPE application provides options to explore the effect on stream classifications when changing the main decision points.  If the stream class does not change with slightly different decision points, then the the stream class is robust.  However, if small changes in decision points change the the stream class and different conclusions are made about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
+*What do you do about it?*
+
+If the stream class does not change with slightly different decision points, then the the stream class is robust.  However, if small changes in decision points change the the stream class and different conclusions are made about biological expectation at a site, a judgment call can be made as to how much validity a stream class has for the particular reach. 
 
 ## Data sources
 
@@ -414,6 +560,8 @@ The following is a list of resources that can provide information to address the
 * CSCI metadata- consult CSCI SOP in [@Mazor18b] and package documentation on [GitHub ](http://sccwrp.github.io/CSCI/)
 * [SCAPE](https://sccwrp.shinyapps.io/scape/) website
 * Reference site information - check the `loadRefData()` or `loadRefBugData()` in the CSCI package
+* USGS stream gauge data: can be downloaded using the [`dataRetrieval`](http://usgs-r.github.io/dataRetrieval/index.html) R package [@DeCicco18] or manually from the [NWIS](https://waterdata.usgs.gov/nwis/) website
+* Calculate drought severity indices: [https://www.drought.gov/drought/climate-and-drought-indices-python](https://www.drought.gov/drought/climate-and-drought-indices-python)
 * GIS data
   * [StreamCat](https://www.epa.gov/national-aquatic-resource-surveys/streamcat) watershed data
   * [NHD hydrography](https://www.usgs.gov/core-science-systems/ngp/national-hydrography) layers
@@ -462,7 +610,7 @@ Based on the above analyses, we recommend a minimum sample size of 250 for a val
 knitr::include_graphics('../figures/summary_results_effort.png')
 ```
 
-## Evaluating ambigous taxa effects on CSCI scores
+## Evaluating ambiguous taxa effects on CSCI scores
 
 Ambiguous taxa were introduced by replacing individuals in the sample that had known identifications with the taxonomic Order.  By doing so, species were combined into larger groups at the Order level and discarded from the CSCI sample if the Order could not be resolved for any metric calculations.  An increasing number of ambiguity was evaluated ranging from 10% (right side of plots) to 90% ambiguous (left side of plots).  For each level of percent ambiguity (or percent taxa identified), 100 samples were evaluated where a different set of individuals were randomly selected to replace with the Order.  As before, the results in the plots represent the average CSCI score for the 100 random samples (Figures \@ref(fig:smpamb)a,b) and the coefficient of variation associated with the 100 random samples (Figures \@ref(fig:smpamb)c).
 
@@ -476,6 +624,81 @@ Based on the above analyses, we recommend a maximum percentage of ambiguous taxa
 
 ```{r smpamb, fig.cap = "Effects of introducing ambiguous taxa on CSCI scores."}
 knitr::include_graphics('../figures/summary_results_ambig.png')
+```
+
+## Assign constraint classes manually
+
+Some stream segments were not classified following application of the landscape model to the statewide hydrography dataset.  Unclassifiable segments occurred if StreamCat data [@Hill16] were unavailable to predict bioassessment expectations using the landscape model or if a segment was excluded from the NHD-plus dataset [@McKay12] (typically, small headwater streams).  The former was more common, particularly in developed areas where canals and ditches were sometimes excluded from the natural stream network.  Overall, unclassified segments were not common in the statewide dataset but they may have regional importance depending on needs of local management groups.  Approximately 15\% of the segments in the San Gabriel River watershed were unclassifiable and a method for manually assigning a classification follows.
+
+We assigned biological expectations to unclassified segments in "typically" urban or agricultural segments by estimating the range of expectations for segments with similar land use.  This analysis was conducted statewide and stratified by major regions to account for statewide variation in land use. The approximate range of CSCI scores in unclassifiable segments were defined for three different groups: segments dominated by either 1) urban, 2) agricultural, or 3) open (i.e., lack of urban or agriculture) land use.  The three groups were identified using kmeans clustering of percentage land use estimates that were available across segments [@MacQueen67].  This created groups of segments with similar land use types, where membership of a segment within a particular group was based on the minimum difference in land use estimates for a segment from the group average for each land use type (within-group centroid).  The two groups that were dominated by agricultural or urban land use were identified based on the largest centroid average of the clusters for each land use type.  The third "open" group that was defined by a lack of urban and agricultural land use was identified by the minimum sum of the centroid values for the two land use types.  The expected range of CSCI scores for the three groups were based on averages from the landscape model for segments with available predictions. 
+
+Ranges of expected CSCI scores for typical segments in urban, agricultural, and open (neither urban, nor agriculture) are shown in Table \@ref(tab:typscrs). These typical values are shown for more to less certainty (wide to narrow range) in the landscape model predictions.  Unclassified segments can be defined by the dominant watershed land use as urban, agricultural, or open, and then matched to the appropriate values in the table.  Between regions, the variation in expected scores also provides context for landscape pressures that differ by location.  For example, the expected range of scores in regions with heavy urban development (e.g., South Coast) is much smaller than streams that are neither urban nor agricultural.  The North Coast region in contrast has an expected range of scores in urban streams that is similar to streams that are open. The range of scores in urban and agricultural streams were similar in the Central Valley where agriculture is the dominant land use.  
+
+```{r typscrs}
+totab <- typscrs %>% 
+  mutate(
+    grps = factor(grps, levels = c('urb', 'ag', 'oth'), labels = c('Urban', 'Ag', 'Open')),
+    Region = ifelse(duplicated(Region), '', Region)
+    ) %>% 
+  rename(`Land use` = grps) %>% 
+  mutate_if(is.numeric, function(x) round(x, 2) %>% formatC(., format = 'f', flag = '0', digits = 2)) %>% 
+  unite('High certainty (10th - 90th)', lo10, hi90, sep = ' - ') %>% 
+  unite('Moderate (25th - 75th)', lo25, hi75, sep = ' - ') %>% 
+  unite('Low certainty (40th - 60th)', lo40, hi60, sep = ' - ')
+
+# table stuff
+cap.val <- 'Ranges of expected CSCI scores for sites that are typically urban, agricultural, or open (neither urban nor agricultural) land uses by major regions in California and statewide. Ranges can be used to identify approximate expectations for stream segments with insufficient data for application of the landscape model. CV: Central Valley, CH: Chaparral, DM: Deserts and Modoc Plateau, NC: North Coast, SN: Sierra Nevada, SC: South Coast.'
+
+# table
+knitr::kable(totab, booktabs = T, caption = cap.val)
+```
+
+## CSCI scores and physical habitat
+
+In some cases, only physical habitat data may be available at a site.  These could include IPI or CRAM data and their individual metrics or components, respectively.  A comparison of physical habitat data with CSCI scores below provides some indication of when physical condition may be sufficiently poor and when an impacted CSCI score may be observed (e.g., below CSCI = 0.79, Figure \@ref(fig:csciphy)).  The blue lines are the quantile regression estimates for the 90th percentile.  Where these regressions intersect the dotted line could be an indication of when CSCI scores are well below 0.79 for the corresponding habitat measure.   
+
+```{r csciphy, fig.cap = 'CSCI scores compared to IPI and CRAM physical habitat measures.  The blue lines are quantiles regression results for the 90th percentile and the red dotted line is CSCI at 0.79.', fig.height = 5, fig.width = 8}
+varlev <- c('IPI', 'Ev_FlowHab', 'H_AqHab', 'H_SubNat', 'PCT_SAFN', 'XCMG', 'indexscore_cram', 'blc', 'bs', 'hy', 'ps')
+varlab <- c('IPI', 'Ev_FlowHab', 'H_AqHab', 'H_SubNat', 'PCT_SAFN', 'XCMG', 'CRAM', 'blc', 'bs', 'hy', 'ps')
+
+toplo <- csciipicram %>% 
+  gather('var', 'val', -MasterID, -yr, -csci_mean) %>% 
+  mutate(
+    var = factor(var, levels = varlev, labels = varlab)
+  )
+
+pthm <- theme_bw(base_family = 'serif') +
+  theme(
+    axis.title.x = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank()
+  ) 
+
+# ipi 
+toplo1 <- toplo %>% 
+  filter(var %in% c('IPI', 'Ev_FlowHab', 'H_AqHab', 'H_SubNat', 'PCT_SAFN', 'XCMG'))
+
+p1 <- ggplot(toplo1, aes(x = val, y = csci_mean)) + 
+  geom_point(size = 1, alpha = 0.6) + 
+  geom_quantile(quantiles = 0.90, se = F) + 
+  facet_wrap(~var, ncol = 6, strip.position = 'bottom') +
+  labs(y = 'CSCI', title = '(a) IPI and metrics') + 
+  geom_hline(yintercept = 0.79, linetype = 'dashed', color = 'red') + 
+  pthm
+  
+# cram
+toplo2 <- toplo %>% 
+  filter(var %in% c('CRAM', 'bs', 'blc', 'hy', 'ps'))
+
+p2 <- ggplot(toplo2, aes(x = val, y = csci_mean)) + 
+  geom_point(size = 1, alpha = 0.6) + 
+  geom_quantile(quantiles = 0.90, se = F) + 
+  facet_wrap(~var, ncol = 5, strip.position = 'bottom') +
+  labs(y = 'CSCI', title = '(b) CRAM and components') + 
+  geom_hline(yintercept = 0.79, linetype = 'dashed', color = 'red') + 
+  pthm
+
+p1 + p2 + plot_layout(ncol = 1)
 ```
 
 # References
