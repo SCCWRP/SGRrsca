@@ -26,6 +26,8 @@ knitr::opts_chunk$set(
 library(here)
 library(tidyverse)
 library(patchwork)
+library(equatiomatic)
+library(quantreg)
 
 # # extract bib entries from online
 # Jabbrev::bib_scrp(
@@ -57,7 +59,7 @@ The landscape model was developed to predict an expected range of CSCI scores re
 
 This document provides a set of questions to consider when evaluating the validity of the CSCI or landscape model results at high priority sites. The validation process is organized hierarchically from low to high effort, starting with the simplest questions that are easy to answer and should be evaluated with any assessment.  High effort questions are those that may require additional data that may be more difficult to acquire, or the certainty of the conclusions may require some level of professional judgment.  
 
-Most importantly, this document is not a validation of the CSCI as an index or the SCAPE model; rather it is a validation of the usefulness of the sample used to estimate the CSCI score, or the SCAPE model outputs at the site in question. There are no policy recommendations herein for what makes a sample and/or score valid; validation should be part of normal QA/QC.  Lastly, the document does not provide specific recommendations on what management actions are pursued after validation occurs.
+Most importantly, this document is not a validation of the CSCI as an index or the SCAPE model; rather it is a validation of the usefulness of the sample used to estimate the CSCI score, or the SCAPE model outputs at the site in question. There are no policy recommendations herein for what makes a sample and/or score valid; validation should be part of normal QA/QC.  Lastly, the document does not provide specific recommendations on what management actions are pursued after validation occurs.  As such, this document is intended as a guide for the analyst or management professional to inform additional scrutiny of high priority locations, where follow-up actions may be chosen based on validity of the CSCI sample and outputs from the landscape model. It is not an appropriate document for field crews to determine how sampling should be done - SOP guidance documents already exist for this purpose (i.e., @Ode16b).
 
 # Validation
 
@@ -88,6 +90,16 @@ It is also important to note that the CSCI is sensitive to stressors that may be
 ## CSCI validation
 
 The following is a list of questions to consider when validating a CSCI score.  Each question focuses on a specific issue that may influence a CSCI score outside of the standard operating procedure for the index.  These questions correspond to the left track of the validation box in Figure \@ref(fig:valflo). For each question, a description is provided for why the the question or issue is a problem, followed by a description of what data do you need or where to you look to determine if the problem applies to your sample.  A CSCI score could be invalidated for one to any of the questions and it is up to the analyst to determine when to stop considering additional questions.
+
+Some of the more common reasons for why a sample does not produce a valid CSCI score are as follows. Keep these common scenarios in mind when reviewing the validation questions below. 
+
+* Standard sampling methods were not used.
+* Sampling was conducted well outside of the normal index period.
+* Sampling occurred in brackish or tidally-influenced waters.  This is more a concern outside of southern California.
+
+For all validation questions, data from upstream or downstream stations could be consulted, if available, to compare to the current station.  Ideally, these stations should reflect conditions for the same or similar upstream catchment as the test site, i.e., do not compare stations on different tributaries, whereas stations along a mainstem could be reasonable compared. Distances between stations to compare should also be considered.  Stations farther apart may show larger natural differences in CSCI scores higher in the watershed than those lower in the watershed.  
+
+In all cases, large differences in CSCI scores at a test site compared to those at nearby sites could provide some clues regarding validity of the sample, e.g., inadequate sampling was conducted at the test site but not those nearby.  Conversely, similarity of a CSCI score at a test site with those nearby could suggest that processes occuring at larger spatial scales are affecting the sample, as for high volume rain events that scour the stream channel at several locations.  Regardless of the differences, sites nearby can provide clues regarding validity of the sample.   
 
 ### Number of organisms in a sample (i.e., sample count)
 
@@ -224,6 +236,7 @@ Additional samples may need to be collected if a sample was affected by drought 
 *Why is this a problem?* 
 
 Fire events that occur in the watershed or riparian area can dramatically affect CSCI scores. Fire can alter soil chemistry and water runoff characteristics, which in turn affects stream conditions.  Sites impacted by fire typically have increases in fine sediment and chemical changes from burned debris or litter that flows downstream.  Riparian conditions may also change if vegetation in or around the stream is removed by fire, which can increase stream temperature.  As a result, biological integrity is reduced post-fire and may not recover until several years after the fire.  An evaluation of fire impacted sites in the Lake Tahoe basin showed that communities did not recover until two years after a fire event [@Oliver12].  In southern California, bioassessment scores at reference sites did not recover until one to two years post-fire, with burned sites having reduced taxonomic diversity and characterized by rapid colonizers and pollution-tolerant taxa (e.g., black flies and minnow mayflies) [@Rehn11]. 
+
 Although fire is a natural phenomenon, an increase in the severity and magnitude may result from climate change or may otherwise be exacerbated by drought conditions.  Moreover, evidence of the influence of wildfire does not invalidate a CSCI score, but may provide useful information for understanding why scores may be low.
 
 *Where do you find an answer?*
@@ -242,7 +255,7 @@ Although fire impacts can vary from site to site, these guidelines can provide a
 
 *What can you do about it?*
 
-Previous studies in southern California show that many burned reference sites have scores that return to pre-burned values in 1-2 years [@Rehn11]. Therefore, we recommend resampling ~2 years post burn.
+Previous studies in southern California show that many burned reference sites have scores that return to pre-burned values in 1-2 years [@Rehn11].  Sites surveyed in the SGR watershed were observed to return to baseline conditions 2.5 to 3 years post-fire. Therefore, we recommend resampling no sooner than three years post burn to characterize baseline stream condition.
 
 ### Vegetation management, debris removal
 
@@ -342,10 +355,10 @@ Evidence of tidal influence __invalidates__ a CSCI score, except when the tidal 
 *Where do you find an answer?*
 
 1. In some coastal watersheds tidal influence is controlled by drop structures or tidal gates (e.g., the drop structures near the 405 freeway limit the extent of tidal influence on the San Gabriel River). Samples collected downstream of these controls should be considered tidally influenced.
-1. Site is located within mapped estuarine region (https://map.dfg.ca.gov/metadata/ds2792.html) and at elevations close to sea level (e.g., <10 m).
-1. Field notes or other local expertise suggesting bi-directional flows or dominance of halophytic vegetation (e.g., pickleweed, marsh cordgrass)[^*]
-1. The sample is dominated by marine or brackish invertebrates, such as polychaete worms (such as Manayunkia, Ficopomatus, or Nereis)$^1$
-1. Direct measurements of salinity at a sample site can provide an indication of relative tidal influence.  Note that tidal conditions vary daily and with precipitation patterns, so a single measure of salinity may not reflect the gradient of conditions at a site. 
+1. Site is located within mapped estuarine region (https://map.dfg.ca.gov/metadata/ds2792.html), immediately contiguous with saline waters, and at elevations within twice the spring tide height for the region.
+1. Field notes or other local expertise suggesting bi-directional flows from tidal exchange or dominance of halophytic vegetation (e.g., pickleweed, marsh cordgrass, or black needle rush/Juncus spp. as a low salinity indicator)[^*]
+1. The sample has a high abundance of marine or brackish invertebrates, such as polychaete worms (such as Manayunkia, Ficopomatus, or Nereis)$^1$
+1. Direct measurements of salinity at a sample site can provide an indication of relative tidal influence.  Note that tidal conditions vary daily and with precipitation patterns, so a single measure of salinity may not reflect the gradient of conditions at a site. A complete survey of salinity covering the tidal cycle (e.g., over 12 hours) or, at a minimum, one sample occurring at mean high water, will provide a more complete description of the salinity regime.  
 
 [^*]: These indicators should be interpreted with caution and only indicate tidal influence at sites within a few kilometers of the coast
 
@@ -361,7 +374,7 @@ Collect additional samples well upstream where the location is not tidally-influ
 
 *Why is this a problem?* 
 
-There are some settings in California where CSCI scores have been hypothesized to be unreliable (e.g., watershed underlain by the Monterey formation or similar recent marine sediments), although there are few studies that have thoroughly explored this issue.  In these settings, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region (e.g., unusual geology types with limited extent, @Campbell09).  This setting can influence the physical and chemical characteristics of the stream that structure the diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores. Samples collected from such settings may invalidate a CSCI score, or require adjustments for correct interpretation.
+There are some settings in California where CSCI scores have been hypothesized to be unreliable (e.g., watershed underlain by the Monterey formation or similar recent marine sediments), although there are few studies that have thoroughly explored this issue.  In these settings, scores may be depressed because the biological community may be naturally low in diversity and the reference pools do not account for these localized exceptions.  For example, the geological setting may be uncharacteristic of the region [e.g., unusual geology types with limited extent, @Campbell09].  This setting can influence the physical and chemical characteristics of the stream that structure the diversity of the biological community.  This confounds the ability of the CSCI to distinguish between natural and anthropogenic variation, resulting in unreliable scores. Samples collected from such settings may invalidate a CSCI score, or require adjustments for correct interpretation.
 
 *Where do you find an answer and how do you evaluate the information?*
 
@@ -699,6 +712,76 @@ p2 <- ggplot(toplo2, aes(x = val, y = csci_mean)) +
   pthm
 
 p1 + p2 + plot_layout(ncol = 1)
+```
+
+The equations for the quantile regression fits in each panel above are as follows: 
+
+```{r}
+totab <- csciipicram %>% 
+  gather('var', 'val', -MasterID, -yr, -csci_mean) %>% 
+  mutate(
+    var = factor(var, levels = varlev, labels = varlab)
+  ) %>% 
+  rename(CSCI = csci_mean) %>% 
+  group_by(var) %>% 
+  nest %>% 
+  mutate(
+    mods = purrr::pmap(list(var, data), function(var, data){
+      
+      tomod <- data
+      names(tomod)[names(tomod) %in% 'val'] <- as.character(var)
+      
+      mod <- paste0('CSCI ~ ', var) %>% 
+        as.formula %>% 
+        rq(data = tomod, tau = 0.9)
+      
+      return(mod)
+      
+    }),
+    valest = purrr::map(mods, function(mods){
+      
+      coef <- mods %>% 
+        coefficients
+      
+      est <- (0.79 - coef[1]) / coef[2]
+      est <- round(est, 2) %>% 
+        as.character
+      
+      return(est)
+      
+    }),
+    coef = purrr::pmap(list(var, mods), function(var, mods){
+    
+      coef <- mods %>% 
+        coefficients %>% 
+        round(2)
+      
+      signv <- sign(coef[2]) 
+      signv <- case_when(
+        signv %in% c(0, 1) ~ '+', 
+        signv %in% -1 ~ '-'
+      )
+      out <- paste(coef[1], signv, coef[2], '*', var)
+      return(out)
+      
+    })
+  ) %>% 
+  select(-data, -mods) %>% 
+  unnest %>% 
+  arrange(var) %>%
+  select(var, coef, valest) %>% 
+  rename(
+    `Habitat measure` = var, 
+    `Quantile model` = coef, 
+    `Estimate at CSCI = 0.79` = valest
+  )
+
+# table stuff
+cap.val <- 'Equations from quantile regression models of CSCI scores against each habitat measure for the 90th percentile response.  The model parameters are shown (intercept and slope) and the estimate of the habitat variable where CSCI is at 0.79.  Negative estimates are non-sensical.'
+
+# table
+knitr::kable(totab, booktabs = T, caption = cap.val)
+
 ```
 
 # References
