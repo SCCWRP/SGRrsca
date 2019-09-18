@@ -26,7 +26,6 @@ knitr::opts_chunk$set(
 library(here)
 library(tidyverse)
 library(patchwork)
-library(equatiomatic)
 library(quantreg)
 
 # # extract bib entries from online
@@ -37,7 +36,7 @@ library(quantreg)
 # )
 
 # # check spelling
-# spelling::spell_check_files(here('analysis/paper', 'decision_framework_SOP.Rmd'))
+spelling::spell_check_files(here('analysis/paper', 'decision_framework_SOP.Rmd'))
 
 load(file = here('analysis/data', 'typscrs.RData'))
 load(file = here('analysis/data', 'csciipicram.RData'))
@@ -97,9 +96,12 @@ Some of the more common reasons for why a sample does not produce a valid CSCI s
 * Sampling was conducted well outside of the normal index period.
 * Sampling occurred in brackish or tidally-influenced waters.  This is more a concern outside of southern California.
 
-For all validation questions, data from upstream or downstream stations could be consulted, if available, to compare to the current station.  Ideally, these stations should reflect conditions for the same or similar upstream catchment as the test site, i.e., do not compare stations on different tributaries, whereas stations along a mainstem could be reasonable compared. Distances between stations to compare should also be considered.  Stations farther apart may show larger natural differences in CSCI scores higher in the watershed than those lower in the watershed.  
+For all validation questions, data from upstream or downstream stations could be consulted, if available, to substitute for the current sample if its validity is in question.  Ideally, these stations should reflect conditions for the same or similar upstream catchment as the test site, i.e., do not substitute stations on different tributaries, whereas stations along a mainstem could be reasonably substituted. Distances between stations to substitute should also be considered - no more than 300m between locations, which is determined from standard practices for conducting probabilistic assessments.  Stations farther apart may show larger natural differences in CSCI scores higher in the watershed than those lower in the watershed.  Characteristics of a good substitute are summarized:
 
-In all cases, large differences in CSCI scores at a test site compared to those at nearby sites could provide some clues regarding validity of the sample, e.g., inadequate sampling was conducted at the test site but not those nearby.  Conversely, similarity of a CSCI score at a test site with those nearby could suggest that processes occuring at larger spatial scales are affecting the sample, as for high volume rain events that scour the stream channel at several locations.  Regardless of the differences, sites nearby can provide clues regarding validity of the sample.   
+* Within 300m of the sample site
+* Similar land use in the upstream catchment and watershed 
+* No tributary inputs between the sites
+* No discharge or point source inputs between the sites
 
 ### Number of organisms in a sample (i.e., sample count)
 
@@ -342,7 +344,7 @@ knitr::include_graphics(here('analysis/figures', 'delinex2.png'))
 
 *What can you do about it?*
 
-Manual editing of the polyon may be needed if the delineation is inadequate.  Alternativaly, follow the procedures in the CSCI interim instructions [@Mazor18b] to delineate a new watershed.  In both cases, the GIS predictors obtained from the delineation must be estimated again prior to calculating a new CSCI score. 
+Manual editing of the polygon may be needed if the delineation is inadequate.  Alternativaly, follow the procedures in the CSCI interim instructions [@Mazor18b] to delineate a new watershed.  In both cases, the GIS predictors obtained from the delineation must be estimated again prior to calculating a new CSCI score. 
 
 ### Tidal influence at a sample site
 
